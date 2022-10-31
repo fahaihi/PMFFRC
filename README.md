@@ -13,9 +13,9 @@
     </p>
 </p>
 <p align="center">
-  <a href="#about-the-pmffrc">About The Project</a> •
-  <a href="#copy-our-project">How To Use</a> •
-  <a href="#examples">Examples</a> •
+  <a href="#about-the-pmffrc">About The Pmffrc</a> •
+  <a href="#copy-our-project">Copy Our Project</a> •
+  <a href="#useage">Useage</a> •
   <a href="#best-practice">Best Practice</a> •
   <a href="#credits">Credits</a> •
   <a href="examples.md">More Examples</a>
@@ -44,6 +44,15 @@ finally, Run the following command：
 bash install.sh
 ```
 ## Usage
+PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)`, and `MSTCOM (2022)` algorithms. To run `./PMFFRC`, please configure the file script in the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` directory. 
+`HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)` and `MSTCOM (2022)` configurations please refer to the following repositories:
+```sh
+  HARC(2018)：https://github.com/shubhamchandak94/HARC
+  Spring(2019)：https://github.com/shubhamchandak94/Spring
+  MSTCOM(2021)：https://github.com/yuansliu/mstcom
+  FastqCLS(2022)：https://github.com/Krlucete/FastqCLS 
+```
+After configuring the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` files, run `./PMFFRC` with the following command:
 ```sh
 Compression-> Compress Multi-FastQ Files:
   ./PMFFRC [-c multi-fastQ-files-path]
@@ -61,25 +70,13 @@ DECompression-> DECompress Multi-FastQ Files:
 Help (this message):
   ./PMFFRC -h
 ```
-PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)`, and `MSTCOM (2022)` algorithms. To run `./PMFFRC`, please configure the file script in the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` directory. 
-`HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)` and `MSTCOM (2022)` configurations please refer to the following repositories:
-```sh
-  HARC(2018)：https://github.com/shubhamchandak94/HARC
-  Spring(2019)：https://github.com/shubhamchandak94/Spring
-  MSTCOM(2021)：https://github.com/yuansliu/mstcom
-  FastqCLS(2022)：https://github.com/Krlucete/FastqCLS 
-```
 
 ## Examples
-```py
-from google.colab import drive
-drive.mount('/gdrive', force_remount=False)
-import os
-!wget -q https://raw.githubusercontent.com/L0garithmic/fastcolabcopy/main/fastcopy.py
-import fastcopy
-!python fastcopy.py /gdrive/Shareddrives/Source/. /gdrive/Shareddrives/Destination --thread 20 --size-limit 400mb
+1、Compress multiple files in the /userdir/data/testdir directory using 20 CPU cores and 40GB of secure memory：
+```sh
+./PMFFRC -c /userdir/data/testdir -y harc -t 20 -u 40 -q -e
 ```
-If you want to see copy execution time:
+2、If you don't want to save A, B, and C, you can run the following command：
 ```mod
 !pip install -q ipython-autotime
 %load_ext autotime
