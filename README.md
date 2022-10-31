@@ -1,5 +1,4 @@
-# PMFFRC
-A Parallel Multi-FastQ-Files Reads Clustering Tool For Improving DNA Reads Compression
+# PMFFRC 
 ![made-with-C++](https://img.shields.io/badge/Made%20with-C++11-brightgreen)
 ![made-with-OpenMP](https://img.shields.io/badge/Made%20with-OpenMP-blue)
 
@@ -10,7 +9,7 @@ A Parallel Multi-FastQ-Files Reads Clustering Tool For Improving DNA Reads Compr
   <img src="https://github.com/fahaihi/PMFFRC/blob/master/Log.png" alt="Logo" width="722" height="189">
 </h1>
   <p align="center">
-    Python3 script to transfer files in Google Colab 10-50x faster.
+    A Parallel Multi-FastQ-Files Reads Clustering Tool For Improving DNA Reads Compression.
     </p>
 </p>
 <p align="center">
@@ -28,22 +27,15 @@ A Parallel Multi-FastQ-Files Reads Clustering Tool For Improving DNA Reads Compr
 </p>                                                                                                                             
                                                                                                                                                       
 ## About The Project
-FastColabCopy is a Python script for parallel (multi-threading) copying of files between two locations. Currently developed for Google-Drive to Google-Drive transfers using Google-Colab. This script frequently achieves 10-50x speed improvements when copying numerous small files.
+The PMFFRC algorithm takes the DNA sequencing Reads compression rate as the optimization goal, and performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading algorithm, the number of files and the number of sequences in the practical application scenarios of the compression algorithm. PMFFRC(Parallel Multi-FastQ-Files Reads Clustering).
 
-## Importing
+## Copy Our Project
 
-Import from GitHub:
-```py
-!wget https://raw.githubusercontent.com/L0garithmic/fastcolabcopy/main/fastcopy.py
-import fastcopy
+clone from GitHub:
+```shell
+git clone https://github.com/fahaihi/PMFFRC.git
+bash install.sh
 ```
-
-Import from Google Drive:
-```py
-!cp /gdrive/MyDrive/fastcopy.py .
-import fastcopy
-```
-
 
 ## Usage
 ```sh
