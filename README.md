@@ -45,19 +45,29 @@ bash install.sh
 ```
 ## Usage
 ```sh
-usage: fast-copy.py [-h HELP] source destination [-d DELETE] [-s SYNC] [-r REPLACE]
-
-optional arguments:
-  -h --help            show this help message and exit
-  source                the drive you are copying from
-  destination           the drive you are copying to
-  -d --delete           delete the source files after copy
-  -s --sync             delete files in destination if not found in source (do not use, if using with rsync)
-  -r --replace          replace files if they exist
-  -t --thread           set the amount of parallel threads used
-  -l --size-limit       set max size of files copied (supports gb, mb, kb) eg 1.5gb
+Compression-> Compress Multi-FastQ Files:
+  ./PMFFRC [-c multi-fastQ-files-path]
+           [-y cascading. "harc"]
+           [-t num_threads. --Default=20]
+           [-u user_defined_ram_size. --Default 10GB]
+           [-q write quality values and read ids to .quality && .id files]
+           [-e clean temp files. --Default "false"]
+           
+DECompression-> DECompress Multi-FastQ Files:
+  ./PMFFRC [-d *.pmffrc format file]
+           [-t num_threads. --Default=20]
+           [-e clean temp files. --Default "false"]
+           
+Help (this message):
+  ./PMFFRC -h
 ```
-The `source` and `destination` fields are required. Everything else is optional.
+PMFFRC algorithm scripts currently only support HARC (2018), Spring (2019), FastqCLS (2021), and MSTCOM (2022) algorithms. To run ./PMFFRC, please configure the file script in the `PMFFRC/src/` directory. HARC (2018), Spring (2019), FastqCLS (2021) and MSTCOM (2022) configurations please refer to the following repositories:
+```sh
+  HARC(2018)：https://github.com/shubhamchandak94/HARC
+  Spring(2019)：https://github.com/shubhamchandak94/Spring
+  MSTCOM(2021)：https://github.com/yuansliu/mstcom
+  FastqCLS(2022)：https://github.com/Krlucete/FastqCLS 
+```
 
 ## Examples
 ```py
