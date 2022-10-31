@@ -20,7 +20,6 @@
   <a href="#our-experimental-configuration">Our Experimental Configuration</a> •
     <a href="#dataset-acquisition">Dataset Acquisition</a> •
   <a href="#aknowledgements">Acknowledgements</a> •
-  <a href="examples.md">More Examples</a>
 </p>  
 
 <p align="center">
@@ -93,9 +92,11 @@ Help (this message):
 ```
 
 ## Our Experimental Configuration
+Our experiment was conducted on the Dawning 7000A supercomputer system at the Nanning Branch of the National Supercomputing Center, using a queue of CPU/GPU heterogeneous computing nodes. The compute nodes used in the experiment were configured as follows: 2\*Intel Xeon Gold 6230 CPU (2.1Ghz, total 40 cores), 2\*NVIDIA Tesla-T4 GPU (16GB of cuda memory, 2560 CUDA cores), 512GB DDR4 memory, and 8\*900GB external storage.
 
 ## Dataset Acquisition
-
+We experimentally evaluated using the real publicly available sequencing datasets from the NCBI database, Homo sapiens (Homo sapiens), Cicer arietinum (chickpeas), and Salvelinus fontinalis (American char).
+1、for Homo-Sapiens DataS
 
 ## Acknowledgements
 - Credit to [ikonikon](https://github.com/ikonikon/fast-copy) for the base multi-threading code.   
