@@ -115,7 +115,7 @@ SRR11994925-SRR11995284 (360 SE-Files)
 Dataset download and extraction using the `SRA-Tools：https://github.com/ncbi/sra-tools tool`.For the registration number and construction method of the complete data set, see `src/data_download.sh`.
 
 ## Acknowledgements
-- Credit to [@HPC-GXU](https://hpc.gxu.edu.cn) for the computing device support.   
+- Thanks to [@HPC-GXU](https://hpc.gxu.edu.cn) for the computing device support.   
 - Thanks to [@NCBI](https://www.freelancer.com/u/Ostokhoon) for all available datasets.
 - Thanks to [@HARC-Project](https://github.com/shubhamchandak94/HARC) for HARC source code.
 - Thanks to [@SPRING-Project](https://github.com/shubhamchandak94/Spring) for Spring source code.
@@ -123,6 +123,6 @@ Dataset download and extraction using the `SRA-Tools：https://github.com/ncbi/s
 - Thanks to [@FASTQCLS-Project](https://github.com/Krlucete/FastqCLS) for FastqCLS source code.
 
 ## Additional Information
-**Version：**    V1.2022.10.14
+**Version：**    V1.2022.10.14.
 **Authors:**     NBJL-BioGrop.
 **Contact us:**  https://nbjl.nankai.edu.cn OR sunh@nbjl.naikai.edu.cn
