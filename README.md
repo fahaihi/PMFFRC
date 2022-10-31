@@ -123,6 +123,6 @@ Dataset download and extraction using the `SRA-Tools：https://github.com/ncbi/s
 - Thanks to [@FASTQCLS-Project](https://github.com/Krlucete/FastqCLS) for FastqCLS source code.
 
 ## Additional Information
-**Version** V1.2022.10.14
-**Authors:** NBJL-BioGrop.
-**Contact us:** https://nbjl.nankai.edu.cn OR sunh@nbjl.naikai.edu.cn
+**Version：**    V1.2022.10.14
+**Authors:**     NBJL-BioGrop.
+**Contact us:**  https://nbjl.nankai.edu.cn OR sunh@nbjl.naikai.edu.cn
