@@ -16,6 +16,7 @@
   <a href="#about-the-pmffrc">About The Pmffrc</a> •
   <a href="#copy-our-project">Copy Our Project</a> •
   <a href="#useage">Useage</a> •
+  <a href="#example">Example</a> •
   <a href="#best-practice">Best Practice</a> •
   <a href="#credits">Credits</a> •
   <a href="examples.md">More Examples</a>
@@ -76,12 +77,18 @@ Help (this message):
 ```sh
 ./PMFFRC -c /userdir/data/testdir -y harc -t 20 -u 40 -q -e
 ```
-2、If you don't want to save A, B, and C, you can run the following command：
-```mod
-!pip install -q ipython-autotime
-%load_ext autotime
+2、If you don't want to save `*.quality`, `*.id`, and `* temp files`, you can run the following command：
+```sh
+./PMFFRC -c /userdir/data/testdir -y harc -t 20 -u 40
 ```
-Check out <a href="examples.md">examples.md</a> for some more examples.
+3、DeCompress the /userdir/data/testdir.pmffrc file using 20 CPU cores while keeping the intermediate result file:
+```sh
+./PMFFRC -d /userdir/data/testdir.pmffrc -y harc -t 20
+```
+4、Print help information:
+```sh
+./PMFFRC -h
+```
 
 ## Best Practice
 Colab has wildly varying transfer speeds, because of this, the best we can offer are suggestions:
