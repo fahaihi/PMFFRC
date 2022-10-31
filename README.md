@@ -7,12 +7,10 @@ A Parallel Multi-FastQ-Files Reads Clustering Tool For Improving DNA Reads Compr
 <br />
 <h1>
 <p align="center">
-  <img src="https://github.com/fahaihi/PMFFRC/blob/master/LOG.png" alt="Logo" width="140" height="110">
-  <br>PMFFRC
+  <img src="https://github.com/fahaihi/PMFFRC/blob/master/Log.png" alt="Logo" width="140" height="110">
 </h1>
   <p align="center">
     Python3 script to transfer files in Google Colab 10-50x faster.
-    <br />
     </p>
 </p>
 <p align="center">
