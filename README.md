@@ -13,8 +13,8 @@
     </p>
 </p>
 <p align="center">
-  <a href="#about-the-project">About The Project</a> •
-  <a href="#usage">How To Use</a> •
+  <a href="#about-the-pmffrc">About The Project</a> •
+  <a href="#copy-our-project">How To Use</a> •
   <a href="#examples">Examples</a> •
   <a href="#best-practice">Best Practice</a> •
   <a href="#credits">Credits</a> •
@@ -26,17 +26,23 @@
 ![screenshot](img/clip.gif)
 </p>                                                                                                                             
                                                                                                                                                       
-## About The Project
+## About The PMFFRC 
 The PMFFRC algorithm takes the DNA sequencing Reads compression rate as the optimization goal, and performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading algorithm, the number of files and the number of sequences in the practical application scenarios of the compression algorithm. PMFFRC(Parallel Multi-FastQ-Files Reads Clustering).
 
 ## Copy Our Project
 
-clone from GitHub:
-```shell
+firstly, clone our tools from GitHub:
+```sh
 git clone https://github.com/fahaihi/PMFFRC.git
+```
+secondly, turn to PMMFRC directory：
+```sh
+cd PMFFRC
+```
+finally, Run the following command：
+```
 bash install.sh
 ```
-
 ## Usage
 ```sh
 usage: fast-copy.py [-h HELP] source destination [-d DELETE] [-s SYNC] [-r REPLACE]
