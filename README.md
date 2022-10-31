@@ -17,8 +17,9 @@
   <a href="#copy-our-project">Copy Our Project</a> •
   <a href="#useage">Useage</a> •
   <a href="#example">Example</a> •
-  <a href="#best-practice">Best Practice</a> •
-  <a href="#credits">Credits</a> •
+  <a href="#our-experimental-configuration">Our Experimental Configuration</a> •
+    <a href="#dataset-acquisition">Dataset Acquisition</a> •
+  <a href="#aknowledgements">Acknowledgements</a> •
   <a href="examples.md">More Examples</a>
 </p>  
 
@@ -28,7 +29,8 @@
 </p>                                                                                                                             
                                                                                                                                                       
 ## About The PMFFRC 
-The PMFFRC algorithm takes the DNA sequencing Reads compression rate as the optimization goal, and performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading algorithm, the number of files and the number of sequences in the practical application scenarios of the compression algorithm. PMFFRC(Parallel Multi-FastQ-Files Reads Clustering).
+The PMFFRC algorithm takes the DNA sequencing Reads compression rate as the optimization goal, and performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading algorithm, the number of files and the number of sequences in the practical application scenarios of the compression algorithm. 
+PMFFRC(Parallel Multi-FastQ-Files Reads Clustering).
 
 ## Copy Our Project
 
@@ -90,13 +92,11 @@ Help (this message):
 ./PMFFRC -h
 ```
 
-## Best Practice
-Colab has wildly varying transfer speeds, because of this, the best we can offer are suggestions:
-- For large groups of medium/small files, 15-40 threads seems to work best.
-- For 50+ files with significantly varying sizes, try 2 sequentially copies. `-t 15 -l 400` then `-t 2`
-- For files that are 100MB+, it is best to use 2 threads. It is still faster then rsync.   
-- Currently `--sync` breaks if rsync is ran after. If you are mirroring drives. Disable `--sync` and use the rsync's `--delete` function.
+## Our Experimental Configuration
 
-## Credits
+## Dataset Acquisition
+
+
+## Acknowledgements
 - Credit to [ikonikon](https://github.com/ikonikon/fast-copy) for the base multi-threading code.   
 - Thanks to [@Ostokhoon](https://www.freelancer.com/u/Ostokhoon) for ALL argument and folder hierarchy functionality.
