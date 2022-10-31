@@ -120,11 +120,9 @@ Dataset download and extraction using the `SRA-Tools：https://github.com/ncbi/s
 - Thanks to [@HARC-Project](https://github.com/shubhamchandak94/HARC) for HARC source code.
 - Thanks to [@SPRING-Project](https://github.com/shubhamchandak94/Spring) for Spring source code.
 - Thanks to [@MSTCOM-Project](https://github.com/yuansliu/mstcom) for MSTCOM source code.
-- Thanks to [@FASYQCLS-Project](https://github.com/Krlucete/FastqCLS) for FastqCLS source code.
+- Thanks to [@FASTQCLS-Project](https://github.com/Krlucete/FastqCLS) for FastqCLS source code.
 
 ## Additional Information
 **Version** V1.2022.10.14
-**Authors:**NBJL-BioGrop.
-**Contact us:**
-  https://nbjl.nankai.edu.cn
-  sunh@nbjl.naikai.edu.cn
+**Authors:** NBJL-BioGrop.
+**Contact us:** https://nbjl.nankai.edu.cn OR sunh@nbjl.naikai.edu.cn
