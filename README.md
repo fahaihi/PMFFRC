@@ -28,7 +28,8 @@
 </p>                                                                                                                             
                                                                                                                                                       
 ## About The PMFFRC 
-The PMFFRC algorithm takes the genomic sequencing Reads compression rate as the optimization goal, and performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading algorithm, the number of files and the number of sequences in the practical application scenarios of the compression algorithm. 
+The PMFFRC algorithm takes the genomic sequencing Reads compression ratio as the optimization goal. It performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading compressor, the numeral of files, and the numeral of sequencing reads in the actual application scenarios. 
+
 PMFFRC (Parallel Multi-FastQ-Files Reads Clustering).
 
 ## Copy Our Project
@@ -93,9 +94,13 @@ Help (this message):
 
 ## Our Experimental Configuration
 Our experiment was conducted on the Dawning 7000A supercomputer system at the Nanning Branch of the National Supercomputing Center, using a queue of CPU/GPU heterogeneous computing nodes. The compute nodes used in the experiment were configured as follows: 
+  
   2\*Intel Xeon Gold 6230 CPU (2.1Ghz, total 40 cores), 
-  2\*NVIDIA Tesla-T4 GPU (16GB of cuda memory, 2560 CUDA cores), 
+  
+  2\*NVIDIA Tesla-T4 GPU (16GB CUDA memory, 2560 CUDA cores), 
+  
   512GB DDR4 memory, and 
+  
   8\*900GB external storage.
 
 ## Dataset Acquisition
