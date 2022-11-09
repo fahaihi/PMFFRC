@@ -1,0 +1,133 @@
+#!/bin/bash
+set -e
+# P-MMFRC Reads Compressor PipeLine
+usage() {
+  cat <<EOF
+P-MFFRC: A Clustering method for improving reads compression.
+Works on fixed length reads (depend on pipeline algorithms).
+Usage:
+Compression-> Compress Multi-FastQ Files
+  ./PMFFRC [-c multi-fastQ-files-path]
+           [-y cascading. "harc"]
+           [-t num_threads. --Default=20]
+           [-u user_defined_ram_size. --Default 10GB]
+           [-q write quality values and read ids to .quality && .id files]
+           [-e clean temp files. --Default "false"]
+DECompression-> DECompress Multi-FastQ Files
+  ./PMFFRC [-d *.pmffrc format file]
+           [-t num_threads. --Default=20]
+           [-e clean temp files. --Default "false"]
+Help (this message)
+  ./PMFFRC -h
+More supplementary information at:
+  https://github.com/fahahi/PMFFRC
+Acknowledgement:
+  A:https://hpc.gxu.edu.cn
+  B:https://github.com/shubhamchandak94/HARC
+  C:https://github.com/Krlucete/FastqCLS
+  D:https://github.com/shubhamchandak94/Spring
+Version V1.2022.10.14
+Authors:NBJL-BioGrop.
+Contact us:
+  https://nbjl.nankai.edu.cn
+  sunh@nbjl.naikai.edu.cn
+EOF
+  exit 0
+}
+
+compress() {
+  echo "***********P-MFFRC Compressor Running************"
+  if [ $algorithm == "none" ]; then
+    echo "please input a algorithm, such as harc."
+    exit 0
+  elif [ $algorithm == "harc" ]; then
+    echo "selected harc algorithm."
+    echo "compression dir : ${filename}"
+    cd src
+    ./harc_compressor.sh ${filename} ${num_thr} ${U_ram} ${clean_flag} ${preserve_quality}
+  elif [ $algorithm == "spring" ]; then
+    echo "selected spring algorithm."
+    echo "compression dir : ${filename}"
+    cd src
+    ./spring_compressor.sh ${filename} ${num_thr} ${U_ram} ${clean_flag} ${preserve_quality}
+  elif [ $algorithm == "fastqcls" ]; then
+    echo "selected fastqcls algorithm."
+    echo "compression dir : ${filename}"
+    cd src
+    ./fastqcls_compressor.sh ${filename} ${num_thr} ${U_ram} ${clean_flag} ${preserve_quality}
+  elif [ $algorithm == "mstcom" ]; then
+    echo "selected mstcom algorithm."
+    echo "compression dir : ${filename}"
+    cd src
+    ./mstcom_compressor.sh ${filename} ${num_thr} ${U_ram} ${clean_flag} ${preserve_quality}
+  fi
+}
+
+decompress() {
+  echo "**********P-MFFRC DE-Compressor Running*************"
+  if [ $algorithm == "none" ]; then
+    echo "please input a algorithm, such as harc."
+    exit 0
+  elif [ $algorithm == "harc" ]; then
+    echo "selected harc algorithm."
+    echo "decompression *pmffrc file : ${filename}"
+    cd src
+    ./harc_decompressor.sh ${filename} ${num_thr} ${clean_flag}
+  elif [ $algorithm == "spring" ]; then
+    echo "selected spring algorithm."
+    echo "decompression *pmffrc file : ${filename}"
+    cd src
+    ./spring_decompressor.sh ${filename} ${num_thr} ${clean_flag}
+  elif [ $algorithm == "fastqcls" ]; then
+    echo "selected fastqcls algorithm."
+    echo "decompression *pmffrc file : ${filename}"
+    cd src
+    ./fastqcls_decompressor.sh ${filename} ${num_thr} ${clean_flag}
+  elif [ $algorithm == "mstcom" ]; then
+    echo "selected mstcom algorithm."
+    echo "decompression *pmffrc file : ${filename}"
+    cd src
+    ./mstcom_decompressor.sh ${filename} ${num_thr} ${clean_flag}
+  fi
+}
+
+#Initialize variables to default values.
+algorithm="none"
+mode=''
+filename=''
+preserve_order="False"
+preserve_quality="False"
+num_thr=8
+U_ram=10
+clean_flag="False"
+
+#Check the number of arguments. If none are passed, print help and exit.
+NUMARGS=$#
+if [ $NUMARGS -eq 0 ]; then
+  usage
+fi
+
+while getopts ':c:d:y:u:t:qeh' opt; do
+  case "$opt" in
+  c) [[ -n "$mode" ]] && usage || mode='c' && filename=$OPTARG ;;
+  d) [[ -n "$mode" ]] && usage || mode='d' && filename=$OPTARG ;;
+  y) algorithm=$OPTARG ;;
+  t) num_thr=$OPTARG ;;
+  u) U_ram=$OPTARG ;;
+  q) preserve_quality="True" ;;
+  e) clean_flag="True" ;;
+  h) usage ;;
+  \?) usage ;;
+  *) usage ;;
+  esac
+done
+
+if [[ $mode == 'c' ]]; then
+  compress
+elif [[ $mode == 'd' ]]; then
+  decompress
+else
+  echo "You must input -d or -c"
+  usage
+  exit 1
+fi
