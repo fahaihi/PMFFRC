@@ -28,8 +28,8 @@
 </p>                                                                                                                             
                                                                                                                                                       
 ## About The PMFFRC 
-The PMFFRC algorithm takes the DNA sequencing Reads compression rate as the optimization goal, and performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading algorithm, the number of files and the number of sequences in the practical application scenarios of the compression algorithm. 
-PMFFRC(Parallel Multi-FastQ-Files Reads Clustering).
+The PMFFRC algorithm takes the genomic sequencing Reads compression rate as the optimization goal, and performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading algorithm, the number of files and the number of sequences in the practical application scenarios of the compression algorithm. 
+PMFFRC (Parallel Multi-FastQ-Files Reads Clustering).
 
 ## Copy Our Project
 
@@ -58,7 +58,7 @@ After configuring the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompresso
 ```sh
 Compression-> Compress Multi-FastQ Files:
   ./PMFFRC [-c multi-fastQ-files-path]
-           [-y cascading. "harc"]
+           [-y cascading algorithm used. "harc"]
            [-t num_threads. --Default=20]
            [-u user_defined_ram_size. --Default 10GB]
            [-q write quality values and read ids to .quality && .id files]
@@ -102,17 +102,23 @@ Our experiment was conducted on the Dawning 7000A supercomputer system at the Na
 We experimentally evaluated using the real publicly available sequencing datasets from the NCBI database, Homo sapiens (智人), Cicer arietinum (鹰嘴豆), and Salvelinus fontinalis (美洲红点鲑).
 1、For the Homo sapiens dataset, we randomly selected the following registration numbers:
 ```sh
-ERR7091240-1243;1245-1248; 1253-1256;1258-1269 (24 SE-Files)
+# ERR7091240-1243;1245-1248; 1253-1256;1258-1269 (24 SE-Files)
+# You can download this dataset by the following command:
+bash data/NextSeq-550_Homo_sapiens_SE.sh
 ```
 2、For the Cicer arietinum dataset, we randomly selected the following registration numbers:
 ```sh
-SRR13556190-13556217;220;224 (60 PE-Files)
+# SRR13556190-13556217;220;224 (60 PE-Files)
+# You can download this dataset by the following command:
+bash data/HiSeq-2000_Cicer_arietinum_PE.sh
 ```
 3、For the Salvelinus fontinalis dataset, we randomly selected the following registration numbers:
 ```sh
-SRR11994925-SRR11995284 (360 SE-Files)
+# SRR11994925-SRR11995284 (360 SE-Files)
+# You can download this dataset by the following command:
+bash data/Ion-Torrent_Salvelinus_fontinalis_SE.sh
 ```
-Dataset download and extraction using the `SRA-Tools：https://github.com/ncbi/sra-tools tool`.For the registration number and construction method of the complete data set, see `src/data_download.sh`.
+Dataset download and extraction using the `SRA-Tools：https://github.com/ncbi/sra-tools tool`.
 
 ## Acknowledgements
 - Thanks to [@HPC-GXU](https://hpc.gxu.edu.cn) for the computing device support.   
