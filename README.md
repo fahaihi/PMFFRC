@@ -102,20 +102,23 @@ Our experiment was conducted on the Dawning 7000A supercomputer system at the Na
 We experimentally evaluated using the real publicly available sequencing datasets from the NCBI database, Homo sapiens (智人), Cicer arietinum (鹰嘴豆), and Salvelinus fontinalis (美洲红点鲑).
 
 1、For the Homo sapiens dataset, we randomly selected the following registration numbers:
-ERR7091240-1243;1245-1248; 1253-1256;1258-1269 (24 SE-Files)
-You can download this dataset by the following command:
+ERR7091240-1243;1245-1248; 1253-1256;1258-1269 (24 SE-Files).
+
+download this dataset by the following command:
 ```sh
 bash data/NextSeq-550_Homo_sapiens_SE.sh
 ```
 2、For the Cicer arietinum dataset, we randomly selected the following registration numbers:
 SRR13556190-13556217;220;224 (60 PE-Files).
-You can download this dataset by the following command:
+
+download this dataset by the following command:
 ```sh
 bash data/HiSeq-2000_Cicer_arietinum_PE.sh
 ```
 3、For the Salvelinus fontinalis dataset, we randomly selected the following registration numbers:
 SRR11994925-SRR11995284 (360 SE-Files).
-You can download this dataset by the following command:
+
+download this dataset by the following command:
 
 ```sh
 bash data/Ion-Torrent_Salvelinus_fontinalis_SE.sh
