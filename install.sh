@@ -9,3 +9,6 @@ chmod +x src/fastqcls_compressor.sh
 chmod +x src/fastqcls_decompressor.sh
 chmod +x src/mstcom_compressor.sh
 chmod +x src/mstcom_decompressor.sh
+chmod +x data/NextSeq-550_Homo_sapiens_SE.sh
+chmod +x data/HiSeq-2000_Cicer_arietinum_PE.sh
+chmod +x data/Ion-Torrent_Salvelinus_fontinalis_SE.sh

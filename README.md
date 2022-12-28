@@ -73,6 +73,7 @@ DECompression-> DECompress Multi-FastQ Files:
 Help (this message):
   ./PMFFRC -h
 ```
+note：In the PMFFRC toolkit, the parameters beta, x1, and x2 are initialized in the *compressor script.
 
 ## Examples
 1、Compress multiple files in the /userdir/data/testdir directory using 20 CPU cores and 40GB of secure memory：
@@ -93,7 +94,7 @@ Help (this message):
 ```
 
 ## Our Experimental Configuration
-Our experiment was conducted on the Dawning 7000A supercomputer system at the Nanning Branch of the National Supercomputing Center, using a queue of CPU/GPU heterogeneous computing nodes. The compute nodes used in the experiment were configured as follows: 
+Our experiment was conducted on the SUGON-7000A supercomputer system at the Nanning Branch of the National Supercomputing Center, using a queue of CPU/GPU heterogeneous computing nodes. The compute nodes used in the experiment were configured as follows: 
   
   2\*Intel Xeon Gold 6230 CPU (2.1Ghz, total 40 cores), 
   
