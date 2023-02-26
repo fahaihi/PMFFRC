@@ -53,6 +53,11 @@ export PATH=$PATH:`pwd`/
 export PMFFRC_PATH="`pwd`/"
 source ~/.bashrc
 ```
+warning!: PMFFRC relies on `/bin/time` memory and time evaluation commands, make sure 
+that running the following Linux command produces the correct results before using PMFFRC.
+```shell script
+/bin/time -v -p echo "hello pmffrc"
+```
 ## Usage
 PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)`, and `MSTCOM (2022)` algorithms. To run `./PMFFRC`, please configure the file script in the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` directory. 
 `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)` and `MSTCOM (2022)` .
@@ -62,7 +67,7 @@ The detailed configuration scripts for the four dedicated compressors are as fol
 Install and configure the HARC compressor firstly.
 ```shell script
 cd src
-git clone https://github.com/shubhamchandak94/HARC.git # --config "http.proxy=127.0.0.1:7890"
+git clone https://github.com/shubhamchandak94/HARC.git 
 cd HARC
 chmod +x ./install.sh
 ./install.sh
