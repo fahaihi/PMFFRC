@@ -12,8 +12,12 @@ echo
 echo "# 1.parse *pmffrc file"
 #folder_temp="pmffrc_de_temp"
 dir_path=$(dirname $de_path)
+echo "-==============$dir_path"
 file_name=$(basename $de_path)
 folder_temp=de_$(basename ${de_path} .pmffrc)
+folder_temp_zpaq=$(basename ${de_path} .pmffrc)
+echo "===================$folder_temp_zpaq"
+echo "===================$folder_temp"
 cd $dir_path
 if [ -d "${folder_temp}" ]; then
   rm -rf ${folder_temp}
@@ -44,14 +48,14 @@ fastqcls_decompressor() {
       #chmod +x fastqcls
       #./fastqcls -d ${de_file_name} -p -t 8
       cd ${fastqclsPath}
-      python3 cle_reads_decomp.py -t 8 -i ${de_file_name}
+      python3 cle_reads_decomp.py -t 8 -i ${de_file_name} -l ${dir_path}/${folder_temp_zpaq} -k ${dir_path}/${folder_temp}
       if [ $? -ne 0 ]; then
         echo "fastqcls wrong!"
         exit 0
       fi
       cd $pwd_path
       echo "==================$pwd_path==============="
-      exit 0
+      #exit 0
       mv C_${files_num}.seq C_${files_num}.reads
       ((files_num = files_num + 1))
     fi

@@ -86,12 +86,12 @@ notes: The MSTCOM compressor requires gcc>8.
 #### FastcCLS compressor
 notes: 
 
-a) FastqCLS compressor entire FastQ file, we changed the FastqCLS script only for Reads compression, 
-FastcCLS compressor file is located in `src/fastqcls`. 
+(a) FastqCLS compressor entire FastQ file, we changed the FastqCLS script only for Reads compression, 
+FastqCLS located in `src/fastqcls`. 
 
-b) The FastqCLS relies on the zpaq compressor, if your device is not configured with zpaq, download and install 7Z firstly.
+(b) The FastqCLS relies on the zpaq compressor, if your device is not configured with zpaq, download and install zpaq firstly.
 
-c) The FastqCLS compressor relies on Python scripts, and you need to install Python on your system.
+(c) The FastqCLS compressor relies on Python scripts, and you need to install Python on your system.
 
 #### One-click configuration
 We give the one-click configuration scripts for the above four specialized compressors by running the following command:

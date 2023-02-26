@@ -6,10 +6,10 @@ import random
 import timeit
 import os
 if __name__ == '__main__':
-    path2 = r'/public/home/jd_sunhui/genCompressor/testCode/result/fastqcls-2020-reads.txt'
-    file2 = open(path2, 'a+')
-    file2.write('****************************\n')
-    file2.write('testData:')
+    #path2 = r'/public/home/jd_sunhui/genCompressor/testCode/result/fastqcls-2020-reads.txt'
+    #file2 = open(path2, 'a+')
+    #file2.write('****************************\n')
+    #file2.write('testData:')
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', help='input file path')
@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     threads = args.t
     input = args.i
-    file2.write(input+"\n")
+    #file2.write(input+"\n")
     hash = random.getrandbits(128)
     output = input.split(sep=".")[0] + str(hash)
     command = "mkdir " + output

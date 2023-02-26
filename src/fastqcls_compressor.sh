@@ -10,8 +10,8 @@ U_ram=$3
 clean_flag=$4
 preserve_quality=$5
 test_num=0
-folder_name="fastqcls_${Pr}_${U_ram}_pmffrc_output"
-save_name=fastqcls_${Pr}_${U_ram}_$(basename ${test_files_dir})
+folder_name="fastqcls_${Pr}_${U_ram}_$(basename ${test_files_dir})"
+save_name="fastqcls_${Pr}_${U_ram}_$(basename ${test_files_dir})"
 
 echo
 echo "# 1. make output dir"
@@ -147,7 +147,7 @@ fastqcls_pack() {
   cd ${test_files_dir}/${folder_name}
   tar -cf cluster_info.tar *.clu
   tar -Jcf cluster_info.tar *.clu
-  tar -cf ${save_name}.pmffrc cluster_info.tar *zq_seq *sorted_seq_id
+  tar -cf ${save_name}.pmffrc cluster_info.tar *zq_seq
   cp ${save_name}.pmffrc ${test_files_dir}
   cd ${pwd_p}
 }
@@ -160,8 +160,3 @@ if [ ${clean_flag} == "True" ]; then
   echo "  remove temp files"
   rm -rf ${test_files_dir}/${folder_name}
 fi
-
-echo
-#echo "  files size:"
-#ls -l --block-size=KB ${test_files_dir}/${save_name}.pmffrc
-#echo

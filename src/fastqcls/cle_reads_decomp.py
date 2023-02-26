@@ -8,24 +8,34 @@ import random
 import timeit
 
 if __name__ == '__main__':
-    path2 = r'/public/home/jd_sunhui/genCompressor/testCode/result/fastqcls-2020.txt'
-    file2 = open(path2, 'a+')
-    file2.write('De-Compression Data......\n')
-    file2.write("            Command being timed:python3 clE_decomp.py -i")
+    #path2 = r'/public/home/jd_sunhui/genCompressor/testCode/result/fastqcls-2020.txt'
+    #file2 = open(path2, 'a+')
+    #file2.write('De-Compression Data......\n')
+    #file2.write("            Command being timed:python3 clE_decomp.py -i")
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', help='input file path')
     parser.add_argument('-t', help='num of threads', default='8')
+    parser.add_argument('-l', help='input file path')
+    parser.add_argument('-k', help='input file path')
     args = parser.parse_args()
 
     input = args.i
     threads = args.t
-    file2.write(input + '\n')
+    dirr = args.l
+    dirr2 = args.k
+    #file2.write(input + '\n')
     hash = random.getrandbits(128)
     output = args.i + str(hash)
 
     start_time = timeit.default_timer()
     command = "zpaq x " + input + " -threads " + threads
+    subprocess.check_call(command, shell=True)
+
+    print("dir1 : ", dirr)
+    print("dir2 : ", dirr2)
+
+    command = "mv " + dirr + "/*seq* " + dirr2
     subprocess.check_call(command, shell=True)
 
     command = "paste -d ' ' " + input.split(sep=".")[0] + ".sorted_seq_id " + input.split(sep=".")[

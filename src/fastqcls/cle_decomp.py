@@ -27,6 +27,7 @@ if __name__ == '__main__':
     command = "zpaq x " + input + " -threads " + threads
     subprocess.check_call(command, shell=True)
 
+
     command = "paste -d ' ' " + input.split(sep=".")[0] + ".sorted_seq_id " + input.split(sep=".")[
         0] + ".sorted_seq | sort -V > " + output + ".sort_seq"
     subprocess.check_call(command, shell=True)
