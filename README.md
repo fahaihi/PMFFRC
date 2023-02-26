@@ -55,12 +55,7 @@ source ~/.bashrc
 ## Usage
 PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)`, and `MSTCOM (2022)` algorithms. To run `./PMFFRC`, please configure the file script in the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` directory. 
 `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)` and `MSTCOM (2022)` .
-```sh
-  HARC(2018)：https://github.com/shubhamchandak94/HARC
-  Spring(2019)：https://github.com/shubhamchandak94/Spring
-  MSTCOM(2021)：https://github.com/yuansliu/mstcom
-  FastqCLS(2022)：https://github.com/Krlucete/FastqCLS 
-```
+
 The detailed configuration scripts for the four dedicated compressors are as follows:
 #### HARC compressor
 ```shell script
