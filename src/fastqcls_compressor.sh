@@ -42,7 +42,8 @@ echo "# 3. call other algorithm to compress X.fastq"
 fastqcls_pre_compression() {
   echo "  call fastqcls algorithm for pre-compression!"
   pwd_p=`pwd`
-  fastqclsPath="/public/home/jd_sunhui/genCompressor/testCode/FastqCLS-master/src"
+  #fastqclsPath="/public/home/jd_sunhui/genCompressor/testCode/FastqCLS-master/src"
+  fastqclsPath=${PMFFRC_PATH}src/fastqcls
   cd ${fastqclsPath}
   # python3 cle_reads.py -t 8 -i ${test_files_dir}/${folder_name}/${tempFile}
   { /bin/time -v -p python3 cle_reads.py -t 8 -i ${test_files_dir}/${folder_name}/X1.fastq > ${test_files_dir}/${folder_name}/fastqcls_X1.drop; } 2>${test_files_dir}/${folder_name}/C1.log

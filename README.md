@@ -65,7 +65,7 @@ cd HARC
 chmod +x ./install.sh
 ./install.sh
 ``` 
-notes: HARC relies on the 7Z compressor, if your device is not configured with 7Z, download and install 7Z first.
+note: HARC relies on the 7Z compressor, if your device is not configured with 7Z, download and install 7Z firstly.
 #### SPRING compressor
 ```shell script
 cd src
@@ -84,8 +84,9 @@ make
 ``` 
 notes: The MSTCOM compressor requires gcc>8.
 #### FastcCLS compressor
-notes: FastqCLS compressor entire FastQ file, we changed the FastqCLS script only for Reads compression, 
-FastcCLS compressor file is located in `src/fastqcls`.
+notes: a) FastqCLS compressor entire FastQ file, we changed the FastqCLS script only for Reads compression, 
+FastcCLS compressor file is located in `src/fastqcls`. 
+b) HARC relies on the 7Z compressor, if your device is not configured with 7Z, download and install 7Z firstly.
 
 #### One-click configuration
 We give the one-click configuration scripts for the above four specialized compressors by running the following command:
