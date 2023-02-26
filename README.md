@@ -118,8 +118,8 @@ note：In the PMFFRC toolkit, the parameters beta, x1, and x2 are initialized in
 
 ## Examples
 We present the validation dataset under the `PMFFRC/data/testData` directory, which consists of 12 real FastQ sequencing files, each approximately 100MB.
-The following is an example of compression using PMFFRC cascading different compressors:
-#### 1、Using 10GB of system memory, using 20 CPU cores clustering, select harc as the base compressor, save information such as Quality Score, and clear intermediate files.
+The following are some examples of compression using PMFFRC cascading different compressors:
+#### 1、Using 10GB of system memory, using 20 CPU cores clustering, select harc as the base compressor.
 ```sh
 cd data
 PMFFRC -c testData/ -y harc -t 20 -u 10 -q -e
