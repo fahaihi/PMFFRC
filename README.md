@@ -87,7 +87,15 @@ notes: The MSTCOM compressor requires gcc>8.
 notes: FastqCLS compressor entire FastQ file, we changed the FastqCLS script only for Reads compression, 
 FastcCLS compressor file is located in `src/fastqcls`.
 
+#### One-click configuration
+We give the one-click configuration scripts for the above four specialized compressors by running the following command:
+```shell script
+cd src
+chmod +x config.sh
+./config.sh
+```
 
+#### RUN PMFFRC
 After configuring the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` files, run `./PMFFRC` with the following command:
 ```sh
 Compression-> Compress Multi-FastQ Files:
@@ -107,13 +115,7 @@ Help (this message):
   ./PMFFRC -h
 ```
 note：In the PMFFRC toolkit, the parameters beta, x1, and x2 are initialized in the *compressor script.
-#### One-click configuration
-We give the one-click configuration scripts for the above four specialized compressors by running the following command:
-```shell script
-cd src
-chmod +x config.sh
-./config.sh
-```
+
 
 ## Examples
 1、Compress multiple files in the /userdir/data/testdir directory using 20 CPU cores and 40GB of secure memory：
