@@ -58,18 +58,23 @@ PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, 
 `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)` and `MSTCOM (2022)` .
 
 The detailed configuration scripts for the four dedicated compressors are as follows:
-#### A. HARC compressor
+#### HARC compressor
+Install and configure the HARC compressor firstly.
 ```shell script
-# Install and configure the HARC compressor firstly.
 cd src
 git clone https://github.com/shubhamchandak94/HARC.git # --config "http.proxy=127.0.0.1:7890"
 cd HARC
 chmod +x ./install.sh
 ./install.sh
-# Next, run the following script to check whether HARC is installed successfully.
-./harc -c ${PMFFRC_PATH}data/testData/SRR11994936_1_1.fastq -p -t 8
-
 ``` 
+Next, run the following script to check whether HARC is installed successfully.
+```shell script
+./harc -c ${PMFFRC_PATH}data/testData/SRR11994936_1_1.fastq -p -t 8
+```
+Finally, switch to the following file directory and check if there is a `SRR11994936_1_1.harc` compressed file.
+```shell script
+cd ${PMFFRC_PATH}data/testData
+```
 note: HARC relies on the 7Z compressor, if your device is not configured with 7Z, download and install 7Z firstly.
 #### SPRING compressor
 ```shell script
