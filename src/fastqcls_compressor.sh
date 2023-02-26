@@ -147,7 +147,7 @@ fastqcls_pack() {
   cd ${test_files_dir}/${folder_name}
   tar -cf cluster_info.tar *.clu
   tar -Jcf cluster_info.tar *.clu
-  tar -cf ${save_name}.pmffrc cluster_info.tar *zq_seq
+  tar -cf ${save_name}.pmffrc cluster_info.tar *zq_seq *sorted_seq_id
   cp ${save_name}.pmffrc ${test_files_dir}
   cd ${pwd_p}
 }
@@ -162,6 +162,6 @@ if [ ${clean_flag} == "True" ]; then
 fi
 
 echo
-echo "  files size:"
-ls -l --block-size=KB ${test_files_dir}/${save_name}.pmffrc
-echo
+#echo "  files size:"
+#ls -l --block-size=KB ${test_files_dir}/${save_name}.pmffrc
+#echo

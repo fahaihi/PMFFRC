@@ -131,6 +131,8 @@ please check the `testData/harc_20_10_pmffrc_output/C1.log` file to view the spe
 ```sh
 cd testData
 PMFFRC -d harc_20_10_testData.pmffrc -y harc
+# The extracted files are located in the following file directories:
+*testData/de_harc_20_10_testData
 ```
 #### 3、Using 2GB of system memory, using 4 CPU cores clustering, select spring as the base compressor.
 ```sh
@@ -141,6 +143,8 @@ PMFFRC -c testData/ -y spring -t 4 -u 2
 ```sh
 cd testData
 PMFFRC -d spring_4_2_testData.pmffrc -y spring
+# The extracted files are located in the following file directories:
+*testData/spring_4_2_testData
 ```
 
 ## Our Experimental Configuration

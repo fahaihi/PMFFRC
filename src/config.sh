@@ -6,7 +6,7 @@
 #bash src/config.sh
 #######################################################################################
 echo "installing harc compressor..."
-git clone https://github.com/shubhamchandak94/HARC.git --config "http.proxy=127.0.0.1:7890"
+git clone https://github.com/shubhamchandak94/HARC.git #--config "http.proxy=127.0.0.1:7890"
 if [ $? -ne 0 ]; then
     echo "clone harc project wrong!"
     exit 0
@@ -21,7 +21,7 @@ fi
 echo "installing harc compressor successfuly..."
 
 echo "installing spring compressor..."
-git clone https://github.com/shubhamchandak94/Spring.git --config "http.proxy=127.0.0.1:7890"
+git clone https://github.com/shubhamchandak94/Spring.git #--config "http.proxy=127.0.0.1:7890"
 if [ $? -ne 0 ]; then
     echo "clone spring project wrong!"
     exit 0
@@ -54,10 +54,16 @@ else
   exit 0
 fi
 
-module load compiler/gnu/gcc-compiler-8.4.0
-git clone https://github.com/yuansliu/mstcom.git --config "http.proxy=127.0.0.1:7890"
+#module load compiler/gnu/gcc-compiler-8.4.0
+git clone https://github.com/yuansliu/mstcom.git #--config "http.proxy=127.0.0.1:7890"
+if [ $? -ne 0 ]; then
+    echo "clone mstcom project wrong!"
+    exit 0
+fi
 cd mstcom
 make
-
-
-git clone https://github.com/Krlucete/FastqCLS.git --config "http.proxy=127.0.0.1:7890"
+if [ $? -ne 0 ]; then
+    echo "install mstcom project wrong!"
+    exit 0
+fi
+echo "installing mstcom compressor successfuly..."

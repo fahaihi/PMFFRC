@@ -13,7 +13,7 @@ echo "# 1.parse *pmffrc file"
 #folder_temp="pmffrc_de_temp"
 dir_path=$(dirname $de_path)
 file_name=$(basename $de_path)
-folder_temp=de_`basename ${de_path} .pmffrc`
+folder_temp=de_$(basename ${de_path} .pmffrc)
 cd $dir_path
 if [ -d "${folder_temp}" ]; then
   rm -rf ${folder_temp}
@@ -32,22 +32,26 @@ echo
 echo "# 2.decompression compressed cluster multi-fastq-files"
 fastqcls_decompressor() {
   echo "  call fastqcls algorithm for de-compression!"
-  fastqclsPath="/public/home/jd_sunhui/genCompressor/testCode/FastqCLS-master/src"
+  #fastqclsPath="/public/home/jd_sunhui/genCompressor/testCode/FastqCLS-master/src"
+  fastqclsPath=${PMFFRC_PATH}src/fastqcls
   files_list=$(ls)
   for tempFile in ${files_list}; do
     if [[ ${tempFile:$((${#tempFile} - 7))} == ".zq_seq" ]]; then
       echo "  decompression : $tempFile *****************************************************"
       de_file_name=${pwd_path}/${tempFile}
+      echo $de_file_name
       cd ${fastqclsPath}
-      chmod +x fastqcls
+      #chmod +x fastqcls
       #./fastqcls -d ${de_file_name} -p -t 8
-      cd ${PMFFRC_PATH}src/fastqcls
+      cd ${fastqclsPath}
       python3 cle_reads_decomp.py -t 8 -i ${de_file_name}
       if [ $? -ne 0 ]; then
         echo "fastqcls wrong!"
         exit 0
       fi
       cd $pwd_path
+      echo "==================$pwd_path==============="
+      exit 0
       mv C_${files_num}.seq C_${files_num}.reads
       ((files_num = files_num + 1))
     fi
@@ -55,7 +59,6 @@ fastqcls_decompressor() {
   echo "  call fastqcls algorithm for de-compression over!"
 }
 fastqcls_decompressor
-
 
 echo
 echo "# 3.recover cluster reads files"
@@ -65,7 +68,7 @@ for k in $(seq 0 $((files_num - 1))); do
   d_name="C_${k}.reads"
   c_id=$(sed -n 1p ${c_name})
   c_num=$(sed -n 2p ${c_name})
-  echo $c_num > ${k}.log
+  echo $c_num >${k}.log
   temp_num=0
   for ((i = 0; i < ${c_num}; i++)); do
     f_name=$(sed -n $((2 + i * 2 + 1))p ${c_name})
@@ -74,9 +77,9 @@ for k in $(seq 0 $((files_num - 1))); do
     if [[ ${f_name:$((${#f_name} - 6))} == ".fastq" ]]; then f_name_basename=$(basename $f_name .fastq); fi
     if [[ ${f_name:$((${#f_name} - 3))} == ".fq" ]]; then f_name_basename=$(basename $f_name .fq); fi
     f_name_save=${f_name_basename}.read
-    echo "$f_name_save" >> ${k}.log
-    echo "$f_number" >> ${k}.log
-    echo "$temp_num" >> ${k}.log
+    echo "$f_name_save" >>${k}.log
+    echo "$f_number" >>${k}.log
+    echo "$temp_num" >>${k}.log
   done
 done
 
