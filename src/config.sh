@@ -6,6 +6,7 @@
 #bash src/config.sh
 #######################################################################################
 echo "installing harc compressor..."
+git config --global http.postBuffer 11024288000
 git clone https://github.com/shubhamchandak94/HARC.git #--config "http.proxy=127.0.0.1:7890"
 if [ $? -ne 0 ]; then
     echo "clone harc project wrong!"

@@ -44,7 +44,8 @@ cd PMFFRC
 ```
 thirdly, Run the following command：
 ```shell script
-bash install.sh
+chmod +x install.sh
+./install.sh
 ```
 finally, Configure the environment variables with the following command:
 ```shell script
@@ -57,13 +58,17 @@ PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, 
 `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)` and `MSTCOM (2022)` .
 
 The detailed configuration scripts for the four dedicated compressors are as follows:
-#### HARC compressor
+#### A. HARC compressor
 ```shell script
+# Install and configure the HARC compressor firstly.
 cd src
 git clone https://github.com/shubhamchandak94/HARC.git # --config "http.proxy=127.0.0.1:7890"
 cd HARC
 chmod +x ./install.sh
 ./install.sh
+# Next, run the following script to check whether HARC is installed successfully.
+./harc -c ${PMFFRC_PATH}data/testData/SRR11994936_1_1.fastq -p -t 8
+
 ``` 
 note: HARC relies on the 7Z compressor, if your device is not configured with 7Z, download and install 7Z firstly.
 #### SPRING compressor

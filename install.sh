@@ -14,6 +14,5 @@ chmod +x src/mstcom_decompressor.sh
 chmod +x data/NextSeq-550_Homo_sapiens_SE.sh
 chmod +x data/HiSeq-2000_Cicer_arietinum_PE.sh
 chmod +x data/Ion-Torrent_Salvelinus_fontinalis_SE.sh
-
-export HARC_PATH="`pwd`"
-export
+chmod +x PMFFRC
+chmod +x src/config.sh
