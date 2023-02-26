@@ -20,8 +20,16 @@ echo "  folder_name: ${folder_name}"
 if [ -d "${test_files_dir}/${folder_name}" ]; then
   rm -rf "${test_files_dir}/${folder_name}"
   mkdir "${test_files_dir}/${folder_name}"
+  if [ $? -ne 0 ]; then
+    echo "make output dir wrong!"
+    exit 0
+  fi
 else
   mkdir "${test_files_dir}/${folder_name}"
+  if [ $? -ne 0 ]; then
+    echo "make output dir wrong!"
+    exit 0
+  fi
 fi
 
 echo
@@ -42,14 +50,30 @@ echo
 echo "# 3. call other algorithm to compress X.fastq"
 spring_pre_compression() {
   echo "  call spring algorithm for pre-compression!"
-  # spring 已经配置好变量，推荐配置变量后使用
-  { /bin/time -v -p spring -c -i ${test_files_dir}/${folder_name}/X1.fastq -o ${test_files_dir}/${folder_name}/X1.spring --no-quality --no-ids -t 8 >${test_files_dir}/${folder_name}/spring_X1.drop; } 2>${test_files_dir}/${folder_name}/C1.log
-  { /bin/time -v -p spring -c -i ${test_files_dir}/${folder_name}/X2.fastq -o ${test_files_dir}/${folder_name}/X2.spring --no-quality --no-ids -t 8 >${test_files_dir}/${folder_name}/spring_X2.drop; } 2>${test_files_dir}/${folder_name}/C2.log
+  cd ${PMFFRC_PATH}src/Spring/build
+  { /bin/time -v -p ./spring -c -i ${test_files_dir}/${folder_name}/X1.fastq -o ${test_files_dir}/${folder_name}/X1.spring --no-quality --no-ids -t 8 >${test_files_dir}/${folder_name}/spring_X1.drop; } 2>${test_files_dir}/${folder_name}/C1.log
+  { /bin/time -v -p ./spring -c -i ${test_files_dir}/${folder_name}/X2.fastq -o ${test_files_dir}/${folder_name}/X2.spring --no-quality --no-ids -t 8 >${test_files_dir}/${folder_name}/spring_X2.drop; } 2>${test_files_dir}/${folder_name}/C2.log
   echo "  spring pre-compressor over"
   rm ${test_files_dir}/${folder_name}/X1.fastq
+  if [ $? -ne 0 ]; then
+    echo "rm files ./path/file wrong!"
+    exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X2.fastq
+  if [ $? -ne 0 ]; then
+    echo "rm files ./path/file wrong!"
+    exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X1.spring
+  if [ $? -ne 0 ]; then
+    echo "rm files ./path/file wrong!"
+    exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X2.spring
+  if [ $? -ne 0 ]; then
+    echo "rm files ./path/file wrong!"
+    exit 0
+  fi
 }
 spring_pre_compression
 a=$(sed -n 10p ${test_files_dir}/${folder_name}/C1.log | tr -cd "[0-9]")
@@ -66,6 +90,7 @@ echo
 echo "# 4. clustering"
 Beta=0.20
 #{ /bin/time -v -p ./multi_fastq_files_reads_clustering.out $test_files_dir $Pr $U_ram; } 2>${test_files_dir}/${folder_name}/Cluster.log
+cd ${PMFFRC_PATH}src
 ./multi_fastq_files_reads_clustering.out ${test_files_dir} ${Pr} ${U_ram} ${folder_name} ${Beta}
 if [ $? -ne 0 ]; then
     echo "clustering wrong!"
@@ -73,7 +98,6 @@ if [ $? -ne 0 ]; then
     exit 0
 fi
 
-exit 0
 
 echo
 echo "# 5. merge files"
@@ -104,10 +128,20 @@ spring_compressor() {
       base_name=`basename ${tempFile} .fastq`
       echo "  ***********************${tempFile}*************************"
       if [[ ${preserve_quality} == "True" ]]; then
-        spring -c -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.spring -t 8
+        cd ${PMFFRC_PATH}src/Spring/build
+        ./spring -c -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.spring -t 8
+        if [ $? -ne 0 ]; then
+          echo "run spring wrong!"
+          exit 0
+        fi
       fi
       if [[ ${preserve_quality} == "False" ]]; then
-        spring -c -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.spring --no-quality --no-ids -t 8
+        cd ${PMFFRC_PATH}src/Spring/build
+        ./spring -c -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.spring --no-quality --no-ids -t 8
+        if [ $? -ne 0 ]; then
+          echo "run spring wrong!"
+          exit 0
+        fi
       fi
     fi
   done
@@ -133,6 +167,7 @@ if [ ${clean_flag} == "True" ]; then
   echo "# 8.clean files"
   echo "  remove temp files"
   rm -rf ${test_files_dir}/${folder_name}
+  echo ${test_files_dir}/${folder_name}
 fi
 
 echo

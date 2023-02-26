@@ -43,22 +43,23 @@ compress() {
   elif [ $algorithm == "harc" ]; then
     echo "selected harc algorithm."
     echo "compression dir : ${filename}"
-    cd src
+    #cd src
+    cd ${PMFFRC_PATH}src
     ./harc_compressor.sh ${filename} ${num_thr} ${U_ram} ${clean_flag} ${preserve_quality}
   elif [ $algorithm == "spring" ]; then
     echo "selected spring algorithm."
     echo "compression dir : ${filename}"
-    cd src
+    cd ${PMFFRC_PATH}src
     ./spring_compressor.sh ${filename} ${num_thr} ${U_ram} ${clean_flag} ${preserve_quality}
   elif [ $algorithm == "fastqcls" ]; then
     echo "selected fastqcls algorithm."
     echo "compression dir : ${filename}"
-    cd src
+    cd ${PMFFRC_PATH}src
     ./fastqcls_compressor.sh ${filename} ${num_thr} ${U_ram} ${clean_flag} ${preserve_quality}
   elif [ $algorithm == "mstcom" ]; then
     echo "selected mstcom algorithm."
     echo "compression dir : ${filename}"
-    cd src
+    cd ${PMFFRC_PATH}src
     ./mstcom_compressor.sh ${filename} ${num_thr} ${U_ram} ${clean_flag} ${preserve_quality}
   fi
 }
@@ -71,22 +72,22 @@ decompress() {
   elif [ $algorithm == "harc" ]; then
     echo "selected harc algorithm."
     echo "decompression *pmffrc file : ${filename}"
-    cd src
+    cd ${PMFFRC_PATH}src
     ./harc_decompressor.sh ${filename} ${num_thr} ${clean_flag}
   elif [ $algorithm == "spring" ]; then
     echo "selected spring algorithm."
     echo "decompression *pmffrc file : ${filename}"
-    cd src
+    cd ${PMFFRC_PATH}src
     ./spring_decompressor.sh ${filename} ${num_thr} ${clean_flag}
   elif [ $algorithm == "fastqcls" ]; then
     echo "selected fastqcls algorithm."
     echo "decompression *pmffrc file : ${filename}"
-    cd src
+    cd ${PMFFRC_PATH}src
     ./fastqcls_decompressor.sh ${filename} ${num_thr} ${clean_flag}
   elif [ $algorithm == "mstcom" ]; then
     echo "selected mstcom algorithm."
     echo "decompression *pmffrc file : ${filename}"
-    cd src
+    cd ${PMFFRC_PATH}src
     ./mstcom_decompressor.sh ${filename} ${num_thr} ${clean_flag}
   fi
 }
@@ -109,8 +110,8 @@ fi
 
 while getopts ':c:d:y:u:t:qeh' opt; do
   case "$opt" in
-  c) [[ -n "$mode" ]] && usage || mode='c' && filename=$OPTARG ;;
-  d) [[ -n "$mode" ]] && usage || mode='d' && filename=$OPTARG ;;
+  c) [[ -n "$mode" ]] && usage || mode='c' && filename=`pwd`/$OPTARG ;;
+  d) [[ -n "$mode" ]] && usage || mode='d' && filename=`pwd`/$OPTARG ;;
   y) algorithm=$OPTARG ;;
   t) num_thr=$OPTARG ;;
   u) U_ram=$OPTARG ;;

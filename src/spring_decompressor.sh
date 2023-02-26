@@ -38,7 +38,8 @@ spring_decompressor() {
       echo "  decompression : $tempFile *****************************************************"
       de_file_name=${pwd_path}/${tempFile}
       base_name=`basename ${tempFile} .spring`
-      spring -d -i ${de_file_name} -o ${pwd_path}/${base_name}.reads
+      cd ${PMFFRC_PATH}src/Spring/build
+      ./spring -d -i ${de_file_name} -o ${pwd_path}/${base_name}.reads
       #mv C_${files_num}.dna.d C_${files_num}.reads
       ((files_num = files_num + 1))
     fi

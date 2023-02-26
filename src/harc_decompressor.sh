@@ -32,7 +32,8 @@ echo
 echo "# 2.decompression compressed cluster multi-fastq-files"
 harc_decompressor() {
   echo "  call harc algorithm for de-compression!"
-  harcPath="/public/home/jd_sunhui/genCompressor/HARC-master"
+  #harcPath="/public/home/jd_sunhui/genCompressor/HARC-master"
+  harcPath=${PMFFRC_PATH}src/HARC
   files_list=$(ls)
   for tempFile in ${files_list}; do
     if [[ ${tempFile:$((${#tempFile} - 5))} == ".harc" ]]; then
@@ -41,6 +42,11 @@ harc_decompressor() {
       cd ${harcPath}
       chmod +x harc
       ./harc -d ${de_file_name} -p -t 8
+      if [ $? -ne 0 ]; then
+      echo "decompression wrong!"
+      rm -rf ${test_files_dir}/${folder_name}
+      exit 0
+      fi
       cd $pwd_path
       mv C_${files_num}.dna.d C_${files_num}.reads
       ((files_num = files_num + 1))

@@ -26,7 +26,7 @@
       <paths name="sunh@10.137.144.91:9033">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/sunh/PMFFRC" local="$PROJECT_DIR$" />
+            <mapping deploy="/public/home/jd_sunhui/codebachup/PMFFRC" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>

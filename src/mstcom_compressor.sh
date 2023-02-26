@@ -13,6 +13,21 @@ test_num=0
 folder_name=mstcom_${Pr}_${U_ram}_pmffrc_output
 save_name=mstcom_${Pr}_${U_ram}_$(basename ${test_files_dir})
 
+### configure C compiler
+export compiler=$(which gcc)
+
+### get version code
+MAJOR=$(echo __GNUC__ | $compiler -E -xc - | tail -n 1)
+MINOR=$(echo __GNUC_MINOR__ | $compiler -E -xc - | tail -n 1)
+PATCHLEVEL=$(echo __GNUC_PATCHLEVEL__ | $compiler -E -xc - | tail -n 1)
+if [ ${MAJOR} -gt 7 ] && [ ${MAJOR} ]; then
+  echo "gcc version: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
+else
+  echo "gcc -version must great than 8.4.0..."
+  echo "yours: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
+  exit 0
+fi
+
 echo
 echo "# 1. make output dir"
 echo "  savename: ${save_name}.pmffrc"
@@ -20,8 +35,16 @@ echo "  folder_name: ${folder_name}"
 if [ -d "${test_files_dir}/${folder_name}" ]; then
   rm -rf "${test_files_dir}/${folder_name}"
   mkdir "${test_files_dir}/${folder_name}"
+  if [ $? -ne 0 ]; then
+    echo "make output dir wrong!"
+    exit 0
+  fi
 else
   mkdir "${test_files_dir}/${folder_name}"
+  if [ $? -ne 0 ]; then
+    echo "make output dir wrong!"
+    exit 0
+  fi
 fi
 
 echo
@@ -42,15 +65,37 @@ echo
 echo "# 3. call other algorithm to compress X.fastq"
 mstcom_pre_compression() {
   echo "  call mstcom algorithm for pre-compression!"
-  # mstcom 已经配置好变量，推荐配置变量后使用
+  mstcomPath=${PMFFRC_PATH}src/mstcom
+  cd ${mstcomPath}
+  if [ $? -ne 0 ]; then
+    echo "mstcom running wrong!"
+    exit 0
+  fi
   { /bin/time -v -p mstcom-bin e -i ${test_files_dir}/${folder_name}/X1.fastq -o ${test_files_dir}/${folder_name}/X1.mstcom -p -t 8 >${test_files_dir}/${folder_name}/mstcom_X1.drop; } 2>${test_files_dir}/${folder_name}/C1.log
   { /bin/time -v -p mstcom-bin e -i ${test_files_dir}/${folder_name}/X2.fastq -o ${test_files_dir}/${folder_name}/X2.mstcom -p -t 8 >${test_files_dir}/${folder_name}/mstcom_X2.drop; } 2>${test_files_dir}/${folder_name}/C2.log
   echo "  mstcom pre-compressor over"
   rm ${test_files_dir}/${folder_name}/X1.fastq
+  if [ $? -ne 0 ]; then
+    echo "rm files wrong!"
+    exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X2.fastq
+  if [ $? -ne 0 ]; then
+    echo "rm files wrong!"
+    exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X1.mstcom
+  if [ $? -ne 0 ]; then
+    echo "rm files wrong!"
+    exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X2.mstcom
+  if [ $? -ne 0 ]; then
+    echo "rm files wrong!"
+    exit 0
+  fi
 }
+
 mstcom_pre_compression
 a=$(sed -n 15p ${test_files_dir}/${folder_name}/C1.log | tr -cd "[0-9]")
 b=$(sed -n 15p ${test_files_dir}/${folder_name}/C2.log | tr -cd "[0-9]")
@@ -66,6 +111,7 @@ echo
 echo "# 4. clustering"
 Beta=0.75
 #{ /bin/time -v -p ./multi_fastq_files_reads_clustering.out $test_files_dir $Pr $U_ram; } 2>${test_files_dir}/${folder_name}/Cluster.log
+cd ${PMFFRC_PATH}src
 ./multi_fastq_files_reads_clustering.out ${test_files_dir} ${Pr} ${U_ram} ${folder_name} ${Beta}
 if [ $? -ne 0 ]; then
     echo "clustering wrong!"
@@ -102,9 +148,13 @@ mstcom_compressor() {
       base_name=`basename ${tempFile} .fastq`
       echo "  ***********************${tempFile}*************************"
       if [[ ${preserve_quality} == "True" ]]; then
+        mstcomPath=${PMFFRC_PATH}src/mstcom
+        cd ${mstcomPath}
         mstcom-bin e -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.mstcom -p -t 8
       fi
       if [[ ${preserve_quality} == "False" ]]; then
+        mstcomPath=${PMFFRC_PATH}src/mstcom
+        cd ${mstcomPath}
         mstcom-bin e -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.mstcom -p -t 8
       fi
     fi

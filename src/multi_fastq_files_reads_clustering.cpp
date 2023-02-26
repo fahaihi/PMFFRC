@@ -83,7 +83,7 @@ int main(int argc, char** argv){
 
     get_files(input_files_dir, files_name_list);
     files_num = files_name_list.size();
-    if(!get_Xinfo()) cout << "  get Y_cpm Wrong!" << endl;
+    if(!get_Xinfo()) cout << "" << endl;
 
 
     if(get_files_node_list()==0) {cout << "  get files node list wrong!" << endl; return 0;}
@@ -464,7 +464,7 @@ int get_Xinfo(){
     //cout << nums << "  " << peak_mem << endl;
     //cout << "  Y_cpm : " << Y_cpm << endl;
     //cout << "  X_size : " << test_reads_num << endl;
-    return 0;
+    return 1;
 
 
 }

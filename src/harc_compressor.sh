@@ -19,8 +19,16 @@ echo "  savename: ${save_name}.pmffrc"
 if [ -d "${test_files_dir}/${folder_name}" ]; then
   rm -rf "${test_files_dir}/${folder_name}"
   mkdir "${test_files_dir}/${folder_name}"
+  if [ $? -ne 0 ]; then
+    echo "make output dir wrong!"
+    exit 0
+  fi
 else
   mkdir "${test_files_dir}/${folder_name}"
+  if [ $? -ne 0 ]; then
+    echo "make output dir wrong!"
+    exit 0
+  fi
 fi
 
 echo
@@ -42,16 +50,33 @@ echo "# 3. call other algorithm to compress X.fastq"
 harc_pre_compression() {
   echo "  call harc algorithm for pre-compression!"
   pwd_p=`pwd`
-  harcPath="/public/home/jd_sunhui/genCompressor/HARC-master"
+  #harcPath="/public/home/jd_sunhui/genCompressor/HARC-master"
+  harcPath=${PMFFRC_PATH}src/HARC
   cd ${harcPath}
   { /bin/time -v -p ./harc -c ${test_files_dir}/${folder_name}/X1.fastq -p -t 8 >${test_files_dir}/${folder_name}/harc_X1.drop; } 2>${test_files_dir}/${folder_name}/C1.log
   { /bin/time -v -p ./harc -c ${test_files_dir}/${folder_name}/X2.fastq -p -t 8 >${test_files_dir}/${folder_name}/harc_X2.drop; } 2>${test_files_dir}/${folder_name}/C2.log
   echo "  harc pre-compressor over"
   cd ${pwd_p}
   rm ${test_files_dir}/${folder_name}/X1.fastq
+  if [ $? -ne 0 ]; then
+    echo "rm files wrong!"
+    exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X2.fastq
+   if [ $? -ne 0 ]; then
+    echo "rm files wrong!"
+    exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X1.harc
+   if [ $? -ne 0 ]; then
+    echo "rm files wrong!"
+    exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X2.harc
+   if [ $? -ne 0 ]; then
+    echo "rm files wrong!"
+    exit 0
+  fi
 }
 harc_pre_compression
 a=$(sed -n 10p ${test_files_dir}/${folder_name}/C1.log | tr -cd "[0-9]")
@@ -68,13 +93,14 @@ echo
 echo "# 4. clustering"
 Beta=1.35
 #{ /bin/time -v -p ./multi_fastq_files_reads_clustering.out $test_files_dir $Pr $U_ram; } 2>${test_files_dir}/${folder_name}/Cluster.log
+cd ${PMFFRC_PATH}src
 ./multi_fastq_files_reads_clustering.out ${test_files_dir} ${Pr} ${U_ram} ${folder_name} ${Beta}
 if [ $? -ne 0 ]; then
     echo "clustering wrong!"
     rm -rf ${test_files_dir}/${folder_name}
     exit 0
 fi
-exit 0
+
 
 echo
 echo "# 5. merge files"
@@ -96,7 +122,8 @@ merge_files
 echo
 echo "# 6. compression cluster files"
 harc_compressor() {
-  harcPath="/public/home/jd_sunhui/genCompressor/HARC-master"
+  #harcPath="/public/home/jd_sunhui/genCompressor/HARC-master"
+  harcPath=${PMFFRC_PATH}src/HARC
   files_list=$(ls ${test_files_dir}/${folder_name})
   for tempFile in ${files_list}; do
     if [[ ${tempFile:$((${#tempFile} - 6))} == ".fastq" ]]; then
@@ -105,9 +132,17 @@ harc_compressor() {
       cd ${harcPath}
       if [[ ${preserve_quality} == "True" ]]; then
         ./harc -c ${test_files_dir}/${folder_name}/${tempFile} -q -p -t 8
+        if [ $? -ne 0 ]; then
+          echo "run harc wrong!"
+          exit 0
+        fi
       fi
       if [[ ${preserve_quality} == "False" ]]; then
         ./harc -c ${test_files_dir}/${folder_name}/${tempFile} -p -t 8
+        if [ $? -ne 0 ]; then
+          echo "run harc wrong!"
+          exit 0
+        fi
       fi
       cd ${pwd_p}
     fi
@@ -137,6 +172,6 @@ if [ ${clean_flag} == "True" ]; then
 fi
 
 echo
-echo "  files size:"
-ls -l --block-size=KB ${test_files_dir}/${save_name}.pmffrc
+#echo "  files size:"
+#ls -l --block-size=KB ${test_files_dir}/${save_name}.pmffrc
 echo
