@@ -53,6 +53,7 @@ harc_pre_compression() {
   #harcPath="/public/home/jd_sunhui/genCompressor/HARC-master"
   harcPath=${PMFFRC_PATH}src/HARC
   cd ${harcPath}
+  pwd
   { /bin/time -v -p ./harc -c ${test_files_dir}/${folder_name}/X1.fastq -p -t 8 >${test_files_dir}/${folder_name}/harc_X1.drop; } 2>${test_files_dir}/${folder_name}/C1.log
   { /bin/time -v -p ./harc -c ${test_files_dir}/${folder_name}/X2.fastq -p -t 8 >${test_files_dir}/${folder_name}/harc_X2.drop; } 2>${test_files_dir}/${folder_name}/C2.log
   echo "  harc pre-compressor over"
