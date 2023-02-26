@@ -34,29 +34,33 @@ PMFFRC (Parallel Multi-FastQ-Files Reads Clustering).
 
 ## Copy Our Project
 
-firstly, clone our tools from GitHub:
+Firstly, clone our tools from GitHub:
 ```shell script
 git clone https://github.com/fahaihi/PMFFRC.git
 ```
-secondly, turn to PMMFRC directory：
+Secondly, turn to PMMFRC directory：
 ```shell script
 cd PMFFRC
 ```
-thirdly, Run the following command：
+Thirdly, Run the following command：
 ```shell script
 chmod +x install.sh
 ./install.sh
 ```
-finally, Configure the environment variables with the following command:
+Finally, Configure the environment variables with the following command:
 ```shell script
 export PATH=$PATH:`pwd`/
 export PMFFRC_PATH="`pwd`/"
 source ~/.bashrc
 ```
-warning!: PMFFRC relies on `/bin/time` memory and time evaluation commands, make sure 
+Warning!: PMFFRC relies on `/bin/time` memory and time evaluation commands, make sure 
 that running the following Linux command produces the correct results before using PMFFRC.
 ```shell script
 /bin/time -v -p echo "hello pmffrc"
+```
+If "/usr/bin/time: No such file or directory" is displayed, make sure you have sudo permission to run the following command:
+```shell script
+sudo yum install time
 ```
 ## Usage
 PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)`, and `MSTCOM (2022)` algorithms. To run `./PMFFRC`, please configure the file script in the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` directory. 
