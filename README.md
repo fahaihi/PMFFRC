@@ -28,7 +28,7 @@
 </p>                                                                                                                             
                                                                                                                                                       
 ## About The PMFFRC 
-The PMFFRC algorithm takes the genomic sequencing Reads compression ratio as the optimization goal. It performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading compressor, the numeral of files, and the numeral of sequencing reads in the actual application scenarios. 
+The PMFFRC takes the genomic sequencing Reads compression ratio as the optimization goal. It performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading compressor, the numeral of files, and the numeral of sequencing reads in the actual application scenarios. 
 
 PMFFRC (Parallel Multi-FastQ-Files Reads Clustering).
 
@@ -86,7 +86,7 @@ notes: The MSTCOM compressor requires gcc>8.
 #### FastcCLS compressor
 notes: a) FastqCLS compressor entire FastQ file, we changed the FastqCLS script only for Reads compression, 
 FastcCLS compressor file is located in `src/fastqcls`. 
-b) HARC relies on the 7Z compressor, if your device is not configured with 7Z, download and install 7Z firstly.
+b) HARC relies on the zpaq compressor, if your device is not configured with zpaq, download and install 7Z firstly.
 
 #### One-click configuration
 We give the one-click configuration scripts for the above four specialized compressors by running the following command:
@@ -190,6 +190,7 @@ Dataset download and extraction using the `SRA-Tools：https://github.com/ncbi/s
 - Thanks to [@FASTQCLS-Project](https://github.com/Krlucete/FastqCLS) for FastqCLS source code.
 
 ## Additional Information
-**Version：**    V1.2022.10.14.
+**Source-Version：**    V1.2022.10.14.
+**Latest-Version：**    V2.2023.02.26.
 **Authors:**     NBJL-BioGrop.
 **Contact us:**  https://nbjl.nankai.edu.cn OR sunh@nbjl.naikai.edu.cn

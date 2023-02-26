@@ -19,8 +19,16 @@ echo "  savename: ${save_name}.pmffrc"
 if [ -d "${test_files_dir}/${folder_name}" ]; then
   rm -rf "${test_files_dir}/${folder_name}"
   mkdir "${test_files_dir}/${folder_name}"
+  if [ $? -ne 0 ]; then
+      echo "mkdir wrong!"
+      exit 0
+  fi
 else
   mkdir "${test_files_dir}/${folder_name}"
+  if [ $? -ne 0 ]; then
+      echo "mkdir wrong!"
+      exit 0
+  fi
 fi
 
 echo
@@ -51,9 +59,25 @@ fastqcls_pre_compression() {
   echo "  fastqcls pre-compressor over"
   cd ${pwd_p}
   rm ${test_files_dir}/${folder_name}/X1.fastq
+  if [ $? -ne 0 ]; then
+      echo "rm file wrong!"
+      exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X2.fastq
+  if [ $? -ne 0 ]; then
+      echo "rm file wrong!"
+      exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X1.zq_seq
+  if [ $? -ne 0 ]; then
+      echo "rm file wrong!"
+      exit 0
+  fi
   rm ${test_files_dir}/${folder_name}/X2.zq_seq
+  if [ $? -ne 0 ]; then
+      echo "rm file wrong!"
+      exit 0
+  fi
 }
 fastqcls_pre_compression
 a=$(sed -n 13p ${test_files_dir}/${folder_name}/C1.log | tr -cd "[0-9]")
@@ -71,11 +95,6 @@ echo "# 4. clustering"
 Beta=0.28
 #{ /bin/time -v -p ./multi_fastq_files_reads_clustering.out $test_files_dir $Pr $U_ram; } 2>${test_files_dir}/${folder_name}/Cluster.log
 ./multi_fastq_files_reads_clustering.out ${test_files_dir} ${Pr} ${U_ram} ${folder_name} ${Beta}
-if [ $? -ne 0 ]; then
-    echo "clustering wrong!"
-    rm -rf ${test_files_dir}/${folder_name}
-    exit 0
-fi
 if [ $? -ne 0 ]; then
     echo "clustering wrong!"
     rm -rf ${test_files_dir}/${folder_name}
@@ -102,7 +121,7 @@ merge_files
 echo
 echo "# 6. compression cluster files"
 fastqcls_compressor() {
-  fastqclsPath="/public/home/jd_sunhui/genCompressor/testCode/FastqCLS-master/src"
+  fastqclsPath=${PMFFRC_PATH}src/fastqcls
   files_list=$(ls ${test_files_dir}/${folder_name})
   for tempFile in ${files_list}; do
     if [[ ${tempFile:$((${#tempFile} - 6))} == ".fastq" ]]; then
@@ -111,7 +130,10 @@ fastqcls_compressor() {
       cd ${fastqclsPath}
       # python3 cle_reads.py -t ${t_num} -i ${dirPath}/${fileName}
       python3 cle_reads.py -t 8 -i ${test_files_dir}/${folder_name}/${tempFile}
-
+      if [ $? -ne 0 ]; then
+        echo "fastqcls wrong!"
+        exit 0
+      fi
       cd ${pwd_p}
     fi
   done

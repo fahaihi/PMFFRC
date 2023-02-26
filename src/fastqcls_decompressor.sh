@@ -41,7 +41,12 @@ fastqcls_decompressor() {
       cd ${fastqclsPath}
       chmod +x fastqcls
       #./fastqcls -d ${de_file_name} -p -t 8
+      cd ${PMFFRC_PATH}src/fastqcls
       python3 cle_reads_decomp.py -t 8 -i ${de_file_name}
+      if [ $? -ne 0 ]; then
+        echo "fastqcls wrong!"
+        exit 0
+      fi
       cd $pwd_path
       mv C_${files_num}.seq C_${files_num}.reads
       ((files_num = files_num + 1))
