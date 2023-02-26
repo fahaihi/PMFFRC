@@ -35,16 +35,22 @@ PMFFRC (Parallel Multi-FastQ-Files Reads Clustering).
 ## Copy Our Project
 
 firstly, clone our tools from GitHub:
-```sh
+```shell script
 git clone https://github.com/fahaihi/PMFFRC.git
 ```
 secondly, turn to PMMFRC directory：
-```sh
+```shell script
 cd PMFFRC
 ```
-finally, Run the following command：
-```
+thirdly, Run the following command：
+```shell script
 bash install.sh
+```
+finally, Configure the environment variables with the following command:
+```shell script
+export PATH=$PATH:`pwd`/
+export PMFFRC_PATH="`pwd`/"
+source ~/.bashrc
 ```
 ## Usage
 PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)`, and `MSTCOM (2022)` algorithms. To run `./PMFFRC`, please configure the file script in the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` directory. 
@@ -55,7 +61,7 @@ PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, 
   MSTCOM(2021)：https://github.com/yuansliu/mstcom
   FastqCLS(2022)：https://github.com/Krlucete/FastqCLS 
 ```
-We give the detailed configuration methods of the dedicated compression tools in 4.
+The detailed configuration scripts for the four dedicated compressors are as follows:
 #### HARC compressor
 ```shell script
 cd src
@@ -106,6 +112,13 @@ Help (this message):
   ./PMFFRC -h
 ```
 note：In the PMFFRC toolkit, the parameters beta, x1, and x2 are initialized in the *compressor script.
+#### One-click configuration
+We give the one-click configuration scripts for the above four specialized compressors by running the following command:
+```shell script
+cd src
+chmod +x config.sh
+./config.sh
+```
 
 ## Examples
 1、Compress multiple files in the /userdir/data/testdir directory using 20 CPU cores and 40GB of secure memory：
