@@ -48,13 +48,45 @@ bash install.sh
 ```
 ## Usage
 PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)`, and `MSTCOM (2022)` algorithms. To run `./PMFFRC`, please configure the file script in the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` directory. 
-`HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)` and `MSTCOM (2022)` configurations please refer to the following repositories:
+`HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)` and `MSTCOM (2022)` .
 ```sh
   HARC(2018)：https://github.com/shubhamchandak94/HARC
   Spring(2019)：https://github.com/shubhamchandak94/Spring
   MSTCOM(2021)：https://github.com/yuansliu/mstcom
   FastqCLS(2022)：https://github.com/Krlucete/FastqCLS 
 ```
+We give the detailed configuration methods of the dedicated compression tools in 4.
+#### HARC compressor
+```shell script
+cd src
+git clone https://github.com/shubhamchandak94/HARC.git # --config "http.proxy=127.0.0.1:7890"
+cd HARC
+chmod +x ./install.sh
+./install.sh
+``` 
+notes: HARC relies on the 7Z compressor, if your device is not configured with 7Z, download and install 7Z first.
+#### SPRING compressor
+```shell script
+cd src
+git clone https://github.com/shubhamchandak94/Spring.git #--config "http.proxy=127.0.0.1:7890"
+cd Spring
+mkdir build
+cd build
+cmake ..
+``` 
+#### MSTCOM compressor
+```shell script
+cd src
+git clone https://github.com/yuansliu/mstcom.git #--config "http.proxy=127.0.0.1:7890"
+cd mstcom
+make
+``` 
+notes: The MSTCOM compressor requires gcc>8.
+#### FastcCLS compressor
+notes: FastqCLS compressor entire FastQ file, we changed the FastqCLS script only for Reads compression, 
+FastcCLS compressor file is located in `src/fastqcls`.
+
+
 After configuring the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` files, run `./PMFFRC` with the following command:
 ```sh
 Compression-> Compress Multi-FastQ Files:
