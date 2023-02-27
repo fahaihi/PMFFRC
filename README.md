@@ -150,14 +150,6 @@ FastqCLS located in `src/fastqcls`.
 
 (c) The FastqCLS compressor relies on Python scripts, and you need to install Python on your system.
 
-#### One-click configuration
-We give the one-click configuration scripts for the above four specialized compressors by running the following command:
-```shell script
-cd src
-chmod +x config.sh
-./config.sh
-```
-
 #### RUN PMFFRC
 After configuring the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` files, run `./PMFFRC` with the following command:
 ```sh
