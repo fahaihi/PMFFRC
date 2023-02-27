@@ -66,7 +66,7 @@ sudo yum install time
 PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, `FastqCLS (2021)`, and `MSTCOM (2022)` algorithms. To run `./PMFFRC`, please configure the file script in the `PMFFRC/src/*_compressor.sh` and `PMFFRC/src/*_decompressor.sh` directory. 
 
 The detailed configuration scripts for the four dedicated compressors are as follows:
-#### HARC compressor
+#### 　<font color='red'> HARC compressor </font>
 Install and configure the HARC compressor firstly.
 ```shell script
 cd src
