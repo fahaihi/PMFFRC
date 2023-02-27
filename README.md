@@ -72,35 +72,74 @@ Install and configure the HARC compressor firstly.
 cd src
 git clone https://github.com/shubhamchandak94/HARC.git 
 cd HARC
-chmod +x ./install.sh
+chmod +x install.sh
 ./install.sh
 ``` 
 Next, run the following script to check whether HARC is installed successfully.
 ```shell script
-./harc -c ${PMFFRC_PATH}data/testData/SRR11994936_1_1.fastq -p -t 8
+./harc -c ${PMFFRC_PATH}data/SRR11995098_test.fastq -p -t 8
 ```
-Finally, switch to the following file directory and check if there is a `SRR11994936_1_1.harc` compressed file.
+Finally, switch to the following file directory and check if there is a `SRR11995098_test.harc` compressed file.
 ```shell script
-cd ${PMFFRC_PATH}data/testData
+cd ${PMFFRC_PATH}data
 ```
-note: HARC relies on the 7Z compressor, if your device is not configured with 7Z, download and install 7Z firstly.
+Note: The HARC compressor depends on 7z, if the run shows './harc: line 104: 7z: command not found', make sure you have sudo permission to run the following command:
+```shell script
+sudo yum install p7zip p7zip-plugins
+```
 #### SPRING compressor
+Install and configure the SPRING compressor firstly.
 ```shell script
-cd src
-git clone https://github.com/shubhamchandak94/Spring.git #--config "http.proxy=127.0.0.1:7890"
-cd Spring
+cd ${PMFFRC_PATH}src
+git clone https://github.com/shubhamchandak94/SPRING.git #--config "http.proxy=127.0.0.1:7890"
+``` 
+On Linux with cmake installed and version at least 3.9 (check using `cmake --version`):
+```shell script
+cd SPRING
 mkdir build
 cd build
 cmake ..
-``` 
+make
+```
+On Linux with cmake not installed or with version older than 3.12:
+```shell script
+cd SPRING
+mkdir build
+cd build
+wget https://cmake.org/files/v3.12/cmake-3.12.4.tar.gz
+tar -xzf cmake-3.12.4.tar.gz
+cd cmake-3.12.4
+./configure
+make
+cd ..
+./cmake-3.12.4/bin/cmake ..
+make
+```
+Next, run the following script to check whether SPRING is installed successfully.
+```shell script
+./spring -c -i ${PMFFRC_PATH}data/SRR11995098_test.fastq -o ${PMFFRC_PATH}data/SRR11995098_test.spring
+```
+Finally, switch to the following file directory and check if there is a `SRR11995098_test.spring` compressed file.
+```shell script
+cd ${PMFFRC_PATH}data
+```
 #### MSTCOM compressor
 ```shell script
-cd src
+cd ${PMFFRC_PATH}src
 git clone https://github.com/yuansliu/mstcom.git #--config "http.proxy=127.0.0.1:7890"
 cd mstcom
 make
 ``` 
-notes: The MSTCOM compressor requires gcc>8.
+notes: The MSTCOM compressor requires gcc>8. 
+
+Next, run the following script to check whether MSTCOM is installed successfully.
+```shell script
+./mstcom e -i ${PMFFRC_PATH}data/SRR11995098_test.fastq -o ${PMFFRC_PATH}data/SRR11995098_test.mstcom
+```
+Finally, switch to the following file directory and check if there is a `SRR11995098_test.mstcom` compressed file.
+```shell script
+cd ${PMFFRC_PATH}data
+```
 #### FastcCLS compressor
 notes: 
 

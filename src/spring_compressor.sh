@@ -50,7 +50,7 @@ echo
 echo "# 3. call other algorithm to compress X.fastq"
 spring_pre_compression() {
   echo "  call spring algorithm for pre-compression!"
-  cd ${PMFFRC_PATH}src/Spring/build
+  cd ${PMFFRC_PATH}src/SPRING/build
   { /bin/time -v -p ./spring -c -i ${test_files_dir}/${folder_name}/X1.fastq -o ${test_files_dir}/${folder_name}/X1.spring --no-quality --no-ids -t 8 >${test_files_dir}/${folder_name}/spring_X1.drop; } 2>${test_files_dir}/${folder_name}/C1.log
   { /bin/time -v -p ./spring -c -i ${test_files_dir}/${folder_name}/X2.fastq -o ${test_files_dir}/${folder_name}/X2.spring --no-quality --no-ids -t 8 >${test_files_dir}/${folder_name}/spring_X2.drop; } 2>${test_files_dir}/${folder_name}/C2.log
   echo "  spring pre-compressor over"
@@ -128,7 +128,7 @@ spring_compressor() {
       base_name=`basename ${tempFile} .fastq`
       echo "  ***********************${tempFile}*************************"
       if [[ ${preserve_quality} == "True" ]]; then
-        cd ${PMFFRC_PATH}src/Spring/build
+        cd ${PMFFRC_PATH}src/SPRING/build
         ./spring -c -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.spring -t 8
         if [ $? -ne 0 ]; then
           echo "run spring wrong!"
@@ -136,7 +136,7 @@ spring_compressor() {
         fi
       fi
       if [[ ${preserve_quality} == "False" ]]; then
-        cd ${PMFFRC_PATH}src/Spring/build
+        cd ${PMFFRC_PATH}src/SPRING/build
         ./spring -c -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.spring --no-quality --no-ids -t 8
         if [ $? -ne 0 ]; then
           echo "run spring wrong!"
