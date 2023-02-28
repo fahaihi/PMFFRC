@@ -17,16 +17,16 @@ save_name=mstcom_${Pr}_${U_ram}_$(basename ${test_files_dir})
 export compiler=$(which gcc)
 
 ### get version code
-MAJOR=$(echo __GNUC__ | $compiler -E -xc - | tail -n 1)
-MINOR=$(echo __GNUC_MINOR__ | $compiler -E -xc - | tail -n 1)
-PATCHLEVEL=$(echo __GNUC_PATCHLEVEL__ | $compiler -E -xc - | tail -n 1)
-if [ ${MAJOR} -gt 7 ] && [ ${MAJOR} ]; then
-  echo "gcc version: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
-else
-  echo "gcc -version must great than 8.4.0..."
-  echo "yours: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
-  exit 0
-fi
+#MAJOR=$(echo __GNUC__ | $compiler -E -xc - | tail -n 1)
+#MINOR=$(echo __GNUC_MINOR__ | $compiler -E -xc - | tail -n 1)
+#PATCHLEVEL=$(echo __GNUC_PATCHLEVEL__ | $compiler -E -xc - | tail -n 1)
+#if [ ${MAJOR} -gt 7 ] && [ ${MAJOR} ]; then
+#  echo "gcc version: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
+#else
+#  echo "gcc -version must great than 8.4.0..."
+#  echo "yours: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
+#  exit 0
+#fi
 
 echo
 echo "# 1. make output dir"
@@ -71,8 +71,8 @@ mstcom_pre_compression() {
     echo "mstcom running wrong!"
     exit 0
   fi
-  { /bin/time -v -p mstcom-bin e -i ${test_files_dir}/${folder_name}/X1.fastq -o ${test_files_dir}/${folder_name}/X1.mstcom -p -t 8 >${test_files_dir}/${folder_name}/mstcom_X1.drop; } 2>${test_files_dir}/${folder_name}/C1.log
-  { /bin/time -v -p mstcom-bin e -i ${test_files_dir}/${folder_name}/X2.fastq -o ${test_files_dir}/${folder_name}/X2.mstcom -p -t 8 >${test_files_dir}/${folder_name}/mstcom_X2.drop; } 2>${test_files_dir}/${folder_name}/C2.log
+  { /bin/time -v -p ./mstcom e -i ${test_files_dir}/${folder_name}/X1.fastq -o ${test_files_dir}/${folder_name}/X1.mstcom -p -t 8 >${test_files_dir}/${folder_name}/mstcom_X1.drop; } 2>${test_files_dir}/${folder_name}/C1.log
+  { /bin/time -v -p ./mstcom e -i ${test_files_dir}/${folder_name}/X2.fastq -o ${test_files_dir}/${folder_name}/X2.mstcom -p -t 8 >${test_files_dir}/${folder_name}/mstcom_X2.drop; } 2>${test_files_dir}/${folder_name}/C2.log
   echo "  mstcom pre-compressor over"
   rm ${test_files_dir}/${folder_name}/X1.fastq
   if [ $? -ne 0 ]; then
@@ -150,12 +150,12 @@ mstcom_compressor() {
       if [[ ${preserve_quality} == "True" ]]; then
         mstcomPath=${PMFFRC_PATH}src/mstcom
         cd ${mstcomPath}
-        mstcom-bin e -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.mstcom -p -t 8
+        ./mstcom e -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.mstcom -p -t 8
       fi
       if [[ ${preserve_quality} == "False" ]]; then
         mstcomPath=${PMFFRC_PATH}src/mstcom
         cd ${mstcomPath}
-        mstcom-bin e -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.mstcom -p -t 8
+        ./mstcom e -i ${test_files_dir}/${folder_name}/${tempFile} -o ${test_files_dir}/${folder_name}/${base_name}.mstcom -p -t 8
       fi
     fi
   done

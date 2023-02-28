@@ -12,19 +12,19 @@ clean_debug=$3
 export compiler=$(which gcc)
 
 ### get version code
-MAJOR=$(echo __GNUC__ | $compiler -E -xc - | tail -n 1)
-MINOR=$(echo __GNUC_MINOR__ | $compiler -E -xc - | tail -n 1)
-PATCHLEVEL=$(echo __GNUC_PATCHLEVEL__ | $compiler -E -xc - | tail -n 1)
-if [ ${MAJOR} -gt 7 ] && [ ${MAJOR} ]; then
-  echo "gcc version: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
-else
-  echo "gcc -version must great than 8.4.0..."
-  echo "yours: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
-  exit 0
-fi
+#MAJOR=$(echo __GNUC__ | $compiler -E -xc - | tail -n 1)
+#MINOR=$(echo __GNUC_MINOR__ | $compiler -E -xc - | tail -n 1)
+#PATCHLEVEL=$(echo __GNUC_PATCHLEVEL__ | $compiler -E -xc - | tail -n 1)
+#if [ ${MAJOR} -gt 7 ] && [ ${MAJOR} ]; then
+#  echo "gcc version: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
+#else
+#  echo "gcc -version must great than 8.4.0..."
+#  echo "yours: ${MAJOR}.${MINOR}.${PATCHLEVEL}"
+#  exit 0
+#fi
 
 
-echo
+#echo
 echo "# 1.parse *pmffrc file"
 #folder_temp="pmffrc_de_temp"
 dir_path=$(dirname $de_path)
@@ -55,7 +55,7 @@ mstcom_decompressor() {
       de_file_name=${pwd_path}/${tempFile}
       base_name=`basename ${tempFile} .mstcom`
       cd ${PMFFRC_PATH}src/pmffrc
-      mstcom-bin d -i ${de_file_name} -o ${pwd_path}/${base_name}.reads
+      ./mstcom d -i ${de_file_name} -o ${pwd_path}/${base_name}.reads
       if [ $? -ne 0 ]; then
         echo "mstcom wrong!"
         exit 0
