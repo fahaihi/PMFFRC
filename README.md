@@ -124,7 +124,7 @@ Finally, switch to the following file directory and check if there is a `SRR1199
 cd ${PMFFRC_PATH}data
 ```
 #### MSTCOM compressor
-1.	Install and configure the Mstcom compressor firstly.
+Install and configure the Mstcom compressor firstly.
 ```shell script
 cd ${PMFFRC_PATH}src
 git clone https://github.com/yuansliu/mstcom.git 
@@ -167,7 +167,7 @@ DECompression-> DECompress Multi-FastQ Files:
 Help (this message):
     PMFFRC -h
 ```
-note：In the PMFFRC toolkit, the parameters beta, x1, and x2 are initialized in the *compressor script.
+notes：In the PMFFRC toolkit, the parameters beta, x1, and x2 are initialized in the *compressor script. The BIOCONDA version will be updated soon...
 
 
 ## Examples
