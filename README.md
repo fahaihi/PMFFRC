@@ -203,7 +203,14 @@ PMFFRC -d spring_4_2_testData.pmffrc -y spring
 ```
 #### An example of optimizing spring compression is shown here:
 
-<iframe width="280" height="158" src="https://www.youtube.com/embed/aB1SvhCh7ww?start=5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe 
+    height=450 
+    width=800 
+    src='https://www.youtube.com/embed/aB1SvhCh7ww?start=5' 
+    frameborder=0 
+    'allowfullscreen'>
+</iframe>
+
 
 ## Our Experimental Configuration
 Our experiment was conducted on the SUGON-7000A supercomputer system at the Nanning Branch of the National Supercomputing Center, using a queue of CPU/GPU heterogeneous computing nodes. The compute nodes used in the experiment were configured as follows: 
