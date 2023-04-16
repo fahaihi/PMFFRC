@@ -201,7 +201,7 @@ PMFFRC -d spring_4_2_testData.pmffrc -y spring
 # The extracted files are located in the following file directories:
 # *testData/spring_4_2_testData
 ```
-#### An example of optimizing spring compression is shown here:
+An example of optimizing spring compressor is shown here:
 [![pmffrc demo](https://github.com/fahaihi/PMFFRC/blob/master/DEMO.png)](https://www.youtube.com/embed/aB1SvhCh7ww?start=5 "YOUR_VIDEO_TITLE")
 
 ## Our Experimental Configuration
