@@ -260,4 +260,4 @@ Dataset download and extraction using the `SRA-Tools：https://github.com/ncbi/s
 
 **Contact us:**  https://nbjl.nankai.edu.cn OR sunh@nbjl.naikai.edu.cn
 
-**Cite this article:** Sun, H., Zheng, Y., Xie, H. et al. PMFFRC: a large-scale genomic short reads compression optimizer via memory modeling and redundant clustering. BMC Bioinformatics 24, 454 (2023). https://doi.org/10.1186/s12859-023-05566-9
+**Cite PMFFRC:** Sun, H., Zheng, Y., Xie, H. et al. PMFFRC: a large-scale genomic short reads compression optimizer via memory modeling and redundant clustering. BMC Bioinformatics 24, 454 (2023). https://doi.org/10.1186/s12859-023-05566-9
