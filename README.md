@@ -3,13 +3,8 @@
 
 <!-- LOGO -->
 <br />
-<h1>
 <p align="center">
   <img src="https://fahaihi.github.io/PMFFRC/Log.png" alt="Logo" width="722" height="189">
-</h1>
-  <p align="center">
-    A Parallel Multi-FastQ-Files Reads Clustering Tool For Improving DNA Reads Compression.
-    </p>
 </p>                                                                                                                      
                                                                                                                                                       
 ## About The PMFFRC 
