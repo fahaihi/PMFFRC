@@ -1,4 +1,3 @@
-# PMFFRC 
 ![made-with-C++](https://img.shields.io/badge/Made%20with-C++11-brightgreen)
 ![made-with-OpenMP](https://img.shields.io/badge/Made%20with-OpenMP-blue)
 
@@ -11,21 +10,7 @@
   <p align="center">
     A Parallel Multi-FastQ-Files Reads Clustering Tool For Improving DNA Reads Compression.
     </p>
-</p>
-<p align="center">
-  <a href="#about-the-pmffrc">About The Pmffrc</a> •
-  <a href="#copy-our-project">Copy Our Project</a> •
-  <a href="#useage">Useage</a> •
-  <a href="#example">Example</a> •
-  <a href="#our-experimental-configuration">Our Experimental Configuration</a> •
-    <a href="#dataset-acquisition">Dataset Acquisition</a> •
-  <a href="#aknowledgements">Acknowledgements</a> •
-</p>  
-
-<p align="center">
-  
-![screenshot](img/clip.gif)
-</p>                                                                                                                             
+</p>                                                                                                                      
                                                                                                                                                       
 ## About The PMFFRC 
 The PMFFRC takes the genomic sequencing Reads compression ratio as the optimization goal. It performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading compressor, the numeral of files, and the numeral of sequencing reads in the actual application scenarios. 
