@@ -6,7 +6,7 @@
 <br />
 <h1>
 <p align="center">
-  <img src="https://github.com/fahaihi/PMFFRC/blob/master/Log.png" alt="Logo" width="722" height="189">
+  <img src="https://fahaihi.github.io/PMFFRC/Log.png" alt="Logo" width="722" height="189">
 </h1>
   <p align="center">
     A Parallel Multi-FastQ-Files Reads Clustering Tool For Improving DNA Reads Compression.
@@ -35,31 +35,31 @@ PMFFRC (Parallel Multi-FastQ-Files Reads Clustering).
 ## Copy Our Project
 
 Firstly, clone our tools from GitHub:
-```shell script
+```sh
 git clone https://github.com/fahaihi/PMFFRC.git
 ```
 Secondly, turn to PMMFRC directory：
-```shell script
+```sh
 cd PMFFRC
 ```
 Thirdly, Run the following command：
-```shell script
+```sh
 chmod +x install.sh
 ./install.sh
 ```
 Finally, Configure the environment variables with the following command:
-```shell script
+```sh
 export PATH=$PATH:`pwd`/
 export PMFFRC_PATH="`pwd`/"
 source ~/.bashrc
 ```
 Warning!: PMFFRC relies on `/bin/time` memory and time evaluation commands, make sure 
 that running the following Linux command produces the correct results before using PMFFRC.
-```shell script
+```sh
 /bin/time -v -p echo "hello pmffrc"
 ```
 If "/usr/bin/time: No such file or directory" is displayed, make sure you have sudo permission to run the following command:
-```shell script
+```sh
 sudo yum install time
 ```
 ## Usage
@@ -68,7 +68,7 @@ PMFFRC algorithm scripts currently only support `HARC (2018)`, `Spring (2019)`, 
 The detailed configuration scripts for the four dedicated compressors are as follows:
 #### HARC compressor
 Install and configure the HARC compressor firstly.
-```shell script
+```sh
 cd src
 git clone https://github.com/shubhamchandak94/HARC.git 
 cd HARC
@@ -76,25 +76,25 @@ chmod +x install.sh
 ./install.sh
 ``` 
 Next, run the following script to check whether HARC is installed successfully.
-```shell script
+```sh
 ./harc -c ${PMFFRC_PATH}data/SRR11995098_test.fastq -p -t 8
 ```
 Finally, switch to the following file directory and check if there is a `SRR11995098_test.harc` compressed file.
-```shell script
+```sh
 cd ${PMFFRC_PATH}data
 ```
 Note: The HARC compressor depends on 7z, if the run shows './harc: line 104: 7z: command not found', make sure you have sudo permission to run the following command:
-```shell script
+```sh
 sudo yum install p7zip p7zip-plugins
 ```
 #### SPRING compressor
 Install and configure the SPRING compressor firstly.
-```shell script
+```sh
 cd ${PMFFRC_PATH}src
 git clone https://github.com/shubhamchandak94/SPRING.git 
 ``` 
 On Linux with cmake installed and version at least 3.9 (check using `cmake --version`):
-```shell script
+```sh
 cd SPRING
 mkdir build
 cd build
@@ -102,7 +102,7 @@ cmake ..
 make
 ```
 On Linux with cmake not installed or with version older than 3.12:
-```shell script
+```sh
 cd SPRING
 mkdir build
 cd build
@@ -116,27 +116,27 @@ cd ..
 make
 ```
 Next, run the following script to check whether SPRING is installed successfully.
-```shell script
+```sh
 ./spring -c -i ${PMFFRC_PATH}data/SRR11995098_test.fastq -o ${PMFFRC_PATH}data/SRR11995098_test.spring
 ```
 Finally, switch to the following file directory and check if there is a `SRR11995098_test.spring` compressed file.
-```shell script
+```sh
 cd ${PMFFRC_PATH}data
 ```
 #### MSTCOM compressor
 Install and configure the Mstcom compressor firstly.
-```shell script
+```sh
 cd ${PMFFRC_PATH}src
 git clone https://github.com/yuansliu/mstcom.git 
 cd mstcom
 make
 ``` 
 Next, run the following script to check whether MSTCOM is installed successfully.
-```shell script
+```sh
 ./mstcom e -i ${PMFFRC_PATH}data/SRR11995098_test.fastq -o ${PMFFRC_PATH}data/SRR11995098_test.mstcom
 ```
 Finally, switch to the following file directory and check if there is a `SRR11995098_test.mstcom` compressed file.
-```shell script
+```sh
 cd ${PMFFRC_PATH}data
 ```
 #### FastcCLS compressor
