@@ -3,9 +3,9 @@
 
 <!-- LOGO -->
 <br />
-<p align="center">
+<h1 align="center">
   <img src="https://fahaihi.github.io/PMFFRC/Log.png" alt="Logo" width="722" height="189">
-</p>                                                                                                                      
+</h1>                                                                                                                      
                                                                                                                                                       
 ## About The PMFFRC 
 The PMFFRC takes the genomic sequencing Reads compression ratio as the optimization goal. It performs joint clustering compression on the Reads in multiple FastQ files by modeling the system memory, the peak memory overhead of the cascading compressor, the numeral of files, and the numeral of sequencing reads in the actual application scenarios. 
